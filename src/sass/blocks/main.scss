@@ -1,5 +1,5 @@
 .main {
-    padding: 0 40px;
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -7,120 +7,255 @@
     a[href] {
       @include link-hover-active;
     }
+}
+  
+.main__wrapper {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+
+  @include viewport--lg {
+    max-width: 800px;
   }
-  
-  .main__wrapper {
-    width: 100%;
-    max-width: 1520px;
-    margin: 0 auto;
+}
+
+.main__search {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.main__search-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  *,*:focus,*:hover {
+    outline: none;
   }
-  
-  .main__search {
-    width: 100%;
-    position: relative;
-    top: -30px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .main__search-form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  
-    *,*:focus,*:hover {
-      outline: none;
-    }
-  
-    input {
-      flex-grow: 1;
-      height: 58px;
-      padding: 10px 20px 10px;
-      border: 2px solid $color-black;
-      border-right: none;
-      transition: border-color 0.3s ease-out, opacity  0.3s ease-out;
-  
-      &:focus,
-      &:active,
-      &:hover {
-        border-color: $color-astral;
-      }
-    }
-  
-    button[type='submit'] {
-      height: 58px;
-      padding: 0 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      background-color: $color-silver-chalice;
-      color: $color-white;
-      border: 2px solid $color-black;
-      cursor: pointer;
-  
-      transition: background-color 0.3s ease-out, opacity  0.3s ease-out;
-  
-      &:focus {
-        background-color: $color-astral;
-      }
-  
-      &:active {
-        background-color: $color-astral;
-      }
-  
-      &:hover {
-        background-color: $color-astral;
-      }
+
+  input {
+    flex-grow: 1;
+    height: 52px;
+    padding: 10px 20px 10px;
+    border: 2px solid $color-black;
+    border-right: none;
+    transition: border-color 0.3s ease-out, opacity  0.3s ease-out;
+
+    &:focus,
+    &:active,
+    &:hover {
+      border-color: $color-regent-st-blue;
     }
   }
-  
-  .main__search-form-fields {
+
+  button[type='submit'] {
+    height: 52px;
+    padding: 0 67px;
     display: flex;
-    width: 100%;
-    max-width: 1000px;
-    flex-direction: row;
-    margin: 0 auto;
-  }
-  
-  .main__info {
-    width: 100%;
-    margin-top: 57px;
-    display: flex;
-  
-    a {
-      color: $color-astral;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background-color: transparent;
+    color: $color-default-black;
+    border: 2px solid $color-black;
+    cursor: pointer;
+    transition: background-color 0.3s ease-out, opacity  0.3s ease-out;
+
+    &:focus {
+      background-color: $color-regent-st-blue;
+    }
+
+    &:active {
+      background-color: $color-regent-st-blue;
+    }
+
+    &:hover {
+      background-color: $color-regent-st-blue;
     }
   }
-  
-  .main__news-list {
-    width: 100%;
-    display: flex;
+}
+
+.main__search-form-fields {
+  display: flex;
+  width: 100%;
+  max-width: 1080px;
+  flex-direction: row;
+  margin: 0 auto;
+}
+
+.main__info {
+  width: 100%;
+  margin-top: 57px;
+  display: flex;
+
+  a {
+    color: $color-astral;
+  }
+
+  @include viewport--lg {
     flex-wrap: wrap;
+  }
+
+}
+
+.main__news {
+  width: calc((100% - 60px) / 4);
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-size: 24px;
+    margin: 0 0 20px;
+  }
+
+  @include viewport--lg {
+    width: calc((100% - 20px) / 2);
+    margin-bottom: 60px;
+  }
+
+}
+
+.main__news-list,
+.main__fresh-arrivals-list,
+.main__populars-list,
+.main__collections-list {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  @include clear-ul;
+}
+
+.main__news-list-item {
+  width: 100%;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid $color-regent-st-blue;
+
+  &:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+
+  ul {
     @include clear-ul;
   }
-  
-  .main__news-list-item {
-    width: calc((100% - 96px) / 4);
-    margin-right: 32px;
-    margin-bottom: 52px;
-  
-    &:nth-child(4n+4) {
-      margin-right: 0;
-    }
-  
-    ul {
-      @include clear-ul;
-    }
-  
-    p {
-      line-height: 1em;
-    }
-  
-    h3 {
-      margin: 0 0 20px 0;
-      font-size: 20px;
-    }
+
+  p {
+    margin: 0;
   }
+
+  h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  span {
+    font-size: 13px;
+    color: $color-regent-st-blue;
+  }
+}
+
+.main__fresh-arrivals {
+  width: calc((100% - 60px) / 4);
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-size: 24px;
+    margin: 0 0 22px;
+  }
+
+  @include viewport--lg {
+    width: calc((100% - 20px) / 2);
+    margin-right: 0;
+    margin-bottom: 60px;
+  }
+}
+
+.main__fresh-arrivals-list-item,
+.main__populars-list-item {
+  margin-bottom: 25px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  a {
+    display: block;
+    color: $color-summer-sky;
+    text-decoration: underline;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.main__collections {
+  width: calc((100% - 60px) / 4);
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-size: 24px;
+    margin: 0 0 22px;
+  }
+
+  @include viewport--lg {
+    width: calc((100% - 20px) / 2);
+  }
+}
+
+.main__collections-list-item {
+  margin-bottom: 40px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  a {
+    display: block;
+    color: $color-summer-sky;
+    text-decoration: underline;
+  }
+
+  ul {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    @include clear-ul;
+  }
+}
+
+.main__populars {
+  width: calc((100% - 60px) / 4);
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-size: 24px;
+    margin: 0 0 22px;
+  }
+
+  @include viewport--lg {
+    width: calc((100% - 20px) / 2);
+  }
+}
   

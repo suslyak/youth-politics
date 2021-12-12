@@ -1,0 +1,31 @@
+.main-container {
+    width: 100%;
+    min-height: 1300px;
+    display: flex;
+    flex-direction: column;
+    background: url("/img/main-screen-bg@1x.png") no-repeat center top/1920px 1301px transparent;
+
+    @include retina {
+      background: url("/img/main-screen-bg@2x.png") no-repeat center top/1920px 1301px transparent;
+    }
+  
+    a[href] {
+      @include link-hover-active;
+    }
+
+    @include viewport--lg {
+        background: url("/img/main-screen-bg-tablet@1x.png") no-repeat center top/1440px 1301px transparent;
+
+        @include retina {
+        background: url("/img/main-screen-bg-tablet@2x.png") no-repeat center top/1440px 1301px transparent;
+        }
+    }
+
+    @include viewport--sm {
+        background: url("/img/main-screen-bg-mobile@1x.jpg") no-repeat center top/768px 836px transparent;
+
+        @include retina {
+        background: url("/img/main-screen-bg-mobile@2x.jpg") no-repeat center top/768px 836px transparent;
+        }
+    }
+}

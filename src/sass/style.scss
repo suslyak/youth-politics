@@ -8,13 +8,14 @@
 
 @import "variables";
 @import "mixins";
+@import "global/fonts";
 @import "global/reboot";
 @import "global/utils";
 @import "global/container";
 
 // Blocks
 //---------------------------------
-
+@import "blocks/main-container.scss";
 @import "blocks/page-header.scss";
 @import "blocks/logo.scss";
 @import "blocks/main-screen.scss";

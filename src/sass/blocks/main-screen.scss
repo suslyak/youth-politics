@@ -1,9 +1,8 @@
 .main-screen {
     width: 100%;
-    height: 490px;
-    padding: 0 40px;
+    min-height: 830px;
+    padding: 0 70px 0;
     display: flex;
-    background: $color-gray;
   
     a[href] {
       @include link-hover-active;
@@ -12,6 +11,6 @@
   
   .main-screen__wrapper{
     width: 100%;
-    max-width: 1520px;
+    max-width: 1780px;
     margin: 0 auto;
   }

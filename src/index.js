@@ -15,5 +15,5 @@ ReactDOM.render(
         <App
         />
       </BrowserRouter>,
-    document.querySelector(`#root`)
+    document.querySelector(`#search`)
 );

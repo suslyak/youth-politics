@@ -9,7 +9,249 @@
   <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-  <div id="root"></div>  
+  <div id="root"></div>
+  <section class="main-container">
+    <section class="main-screen">
+      <div class="main-screen__wrapper">
+        <div class="page-header">        
+          <a class="logo" href="index.html">
+            <img
+            src="img/logo_minobr@1x.png"
+            srcset="img/logo_minobr@1x.png 1x, img/logo_minobr@2x.png 2x"
+            alt="лого Минобрнауки России"
+            width="94"
+            height="128">
+          </a>
+          <a class="logo" href="index.html">
+            <!--1x 90px, 2x 180-->
+            <img
+            src="img/logo_mirea@1x.png"
+            srcset="img/logo_mirea@1x.png 1x, img/logo_mirea@2x.png 2x"
+            alt="лого РТУ МИРЭА"
+            width="90"
+            height="115">
+          </a>
+          <h1>
+            Электронная библиотека
+            <span>
+            специалиста по работе с&nbsp;молодежью
+            </span>
+          </h1>
+          <div class="page-header__menu">
+            <ul class="page-header__menu-list">
+              <li><a href="#">Новости</a></li>
+              <li><a href="#">Новые поступления</a></li>
+              <li><a href="#">Коллекции</a></li>
+              <li><a href="#">Популярные ресурсы</a></li>   
+            </ul>
+            <ul class="page-header__submenu-list">
+              <li><a href="#">О нас</a></li>
+              <li><a href="#">Сводная статистика</a></li>
+              <li><a href="#">Помощь</a></li>
+            </ul>          
+          </div>
+          <div class="page-header__right-menu">
+            <ul class="page-header__right-menu-list">
+              <li><a href="#">Рус/Eng</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="main">
+      <div class="main__wrapper">
+        <section id="search" class="main__search">
+          <form action="" class="main__search-form">
+            <div class="main__search-form-fields">
+              <input id="search" type="text" placeholder=""/>
+              <label class="visually-hidden" for="search">Поиск</label>
+              <button type="submit">Найти</button>
+            </div>
+          </form>
+        </section>
+        <section class="main__info">
+          <section class="main__news">
+            <h2>Новости</h2>
+            <ul class="main__news-list">
+              <li class="main__news-list-item">
+                <span>3 декабря</span>
+                <h3>
+                  Публикации Статкомитета СНГ
+                </h3>
+                <p>
+                  Мы предлагаем ознакомиться с материалами Межгосударственного статистического комитета Содружества Независимых Государств, опубликованными с октябрь по декабрь 2021 года. 
+                  <br>
+                   <a href="#">Читать</a>
+                </p>
+              </li>
+              <li class="main__news-list-item">
+                <span>29 ноября</span>
+                <h3>
+                  Вовлечение молодежи в добровольческую деятельность
+                </h3>
+                <p>
+                  В подборке представлены посвященные молодежному добровольчеству информационно-аналитические материалы, опубликованные за последний месяц в РФ. 
+                  <br>
+                   <a href="#">Читать</a>
+                </p>
+              </li>
+              <li class="main__news-list-item">
+                <span>28 ноября</span>
+                <h3>
+                  Молодежное предпринимательство на пространстве СНГ
+                </h3>
+                <p>
+                  Вашему вниманию предлагается учебно-методическая литература, задача которой – развитие сферы молодежного предпринимательства в странах СНГ.
+                  <br>
+                   <a href="#">Читать</a>
+                </p>
+              </li>
+            </ul> 
+          </section>
+          <section class="main__fresh-arrivals">
+            <h2>Новые поступления</h2>
+            <ul class="main__fresh-arrivals-list">
+              <li class="main__fresh-arrivals-list-item">
+                <p>
+                <a href="#">Индекс экономической политики в сфере МСП</a>
+                  Москва, 2012, 12 с
+                  <br>
+                  Сводный документ
+                </p>
+              </li>
+              <li class="main__fresh-arrivals-list-item">
+                <p>
+                <a href="#">Стратегия развития азербайджанской молодежи в 2015-2025 годах</a>
+                  Баку, 2015, 124 с
+                  <br>
+                  Материалы Форума азербайджанской молодежи
+                </p>
+              </li>
+              <li class="main__fresh-arrivals-list-item">
+                <p>
+                <a href="#">Волонтеры в действии. Сборник лучших практик молодежных инициатив волонтеров национальных обществ Красного Креста Беларуси, Молдовы и Украины.</a>
+                  Минск, 2006. - 80 с
+                  <br>
+                  Сборник статей
+                </p>
+              </li>
+              <li class="main__fresh-arrivals-list-item">
+                <p>
+                <a href="#">Государственная программа по реализации Национальной стратегии по развитию информационного общества в Азербайджанской Республике на 2014-2020 годы</a>
+                Баку, 2014, 228 с
+                <br>Сводный документ
+                </p>
+              </li>
+            </ul> 
+          </section>
+          <section class="main__collections">
+            <h2>Коллекции</h2>
+            <ul class="main__collections-list">
+              <li class="main__collections-list-item">
+                <h3>Страны</h3>
+                <ul>
+                  <li>Азербайджанская Республика  - 27</li>
+                  <li>Республика Армения - 18</li>
+                  <li>Республика Беларусь - 24</li>
+                  <li>Республика Казахстан - 16</li>
+                  <li>Киргизская Республика - 6</li>
+                  <a href="#">Все страны</a>
+                </ul>
+              </li>
+              <li class="main__collections-list-item">
+                <h3>Международные организации</h3>
+                <ul>
+                  <li>Всемирная организация скаутского движения - 2</li>
+                  <li>Евразийский банк развития - 14</li>
+                  <li>Европейский союз - 52</li>
+                  <li>Международная Федерация Обществ Красного Креста и Красного Полумесяца - 21</li>
+                  <li>Организация Объединенных Наций - 87</li>
+                  <a href="#">Все Международные организации</a>
+                </ul>
+              </li>
+            </ul> 
+          </section>
+          <section class="main__populars">
+            <h2>Новые поступления</h2>
+            <ul class="main__populars-list">
+              <li class="main__populars-list-item">
+                <p>
+                <a href="#">Стратегия развития азербайджанской молодежи в 2015-2025 годах</a>
+                  Баку, 2015, 387 с
+                  <br>
+                  Сводный документ Форума молодежных инициатив
+                </p>
+              </li>
+              <li class="main__populars-list-item">
+                <p>
+                <a href="#">Дайджест. Молодежная политика Совета Европы</a>
+                  Европейская комиссия, 2016, 22 с
+                </p>
+              </li>
+              <li class="main__populars-list-item">
+                <p>
+                <a href="#">Европейская хартия об участии молодежи в жизни муниципальных и региональных образований</a>
+                  Основной документ, 1948, 10 с
+                </p>
+              </li>
+              <li class="main__populars-list-item">
+                <p>
+                  <a href="#">Навстречу людям. Шаг за шагом. Практические механизмы участия общественности в процессах принятия решений на местном уровне.</a>
+                  Георгиенко В. Н.
+                  <br>
+                  Одесса, 2005. - 112 с
+                  <br>
+                  Книга
+                </p>
+              </li>
+            </ul> 
+          </section>
+        </section>
+      </div>
+    </section>
+  </section>
+  <section class="page-footer">
+    <div class="page-footer__wrapper">
+      <div class="page-footer__menu">
+        <ul>
+          <li><a href="#">О Библиотеке</a></li>
+          <li><a href="#">Структурные подразделения</a></li>
+          <li><a href="#">Правила пользования</a></li>
+        </ul>
+        <span class="page-footer__copyright">
+          © НТБ, 2008 — 2021
+        </span>
+      </div>
+      <div class="page-footer__schedule-div">
+        <table class="page-footer__schedule">
+          <tr class="page-footer__schedule-row">
+            <td>Пн, Вт, Чт</td>
+            <td>10:00 — 17:30</td>
+          </tr>
+          <tr class="page-footer__schedule-row">
+            <td>Ср, Пт</td>
+            <td>10:00 — 18:30</td>
+          </tr>
+          <tr class="page-footer__schedule-row">
+            <td>Сб</td>
+            <td>10:00 — 14:30</td>
+          </tr>
+          <tr class="page-footer__schedule-row page-footer__schedule-row--disabled">
+            <td>Вс</td>
+            <td>Выходной</td>
+          </tr>
+        </table>
+      </div>
+      <div class="page-footer__contacts-div">
+        Москва, проспект Вернадского, д. 78
+        <br>
+        +7 499 215-65-65, добавочные 6001 и 6003
+        <br>
+        <a href="mailto:library@mirea.ru">library@mirea.ru</a>
+      </div>
+    </div>
+  </section>
+  
   <script src="./bundle.js"></script>
 </body>
 </html>
