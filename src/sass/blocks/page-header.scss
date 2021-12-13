@@ -13,13 +13,27 @@
         letter-spacing: 1px;
         text-transform: uppercase;
 
-      span {
-        display: block;
-        font-size: 32px;
-        font-weight: bold;
-        text-transform: none;
-        letter-spacing: 0.1px;
-      }
+        span {
+            display: block;
+            font-size: 32px;
+            font-weight: bold;
+            text-transform: none;
+            letter-spacing: 0.1px;
+        }
+
+        @include viewport--sm {
+            order: 2;
+            width: 100%;
+            text-align: center;
+            margin-right: 0;
+            margin-top: 22px;
+        }
+    }
+
+    @include viewport--sm {
+        padding-top: 20px;
+        flex-wrap: wrap;
+        justify-content: space-around;
     }
 }
 
@@ -45,6 +59,14 @@
 
     @media (max-width: $header-menu-adapdtation--xl - 1) {
         margin: 7px 30px 0;
+    }
+
+    @include viewport--lg {
+        margin: 24px 20px 0 auto;
+    }
+
+    @include viewport--sm {
+        display: none;
     }
 }
 
@@ -74,6 +96,10 @@
             font-size: 16px;
         }
     }
+
+    @include viewport--lg {
+        display: none;
+    }
 }
 
 .page-header__right-menu {
@@ -81,14 +107,16 @@
     display: flex;
     margin: 22px 0 0 auto;
     
-    a {
-        &:hover {
-        //color: $color-astral;
-        }
-    }
-
     @media (max-width: $header-menu-adapdtation--xl - 1) {
         margin: 12px 0 0 auto;
+    }
+
+    @include viewport--lg {
+        margin: 22px 0 0;
+    }
+
+    @include viewport--sm {
+        display: none;
     }
 }
 
@@ -133,8 +161,42 @@
             font-size: 14px;
         }
     }
+
+    @include viewport--lg {
+        display: none;
+    }
 }
 
 .page-header__special {
     flex-shrink: 0;
+}
+
+.menu-toggle {
+    position: relative;
+    display: none;
+    margin-right: 20px;
+    margin-top: 22px;
+    width: 46px;
+    height: 30px;
+    background-color: transparent;
+    background-image: url("/img/menu-icon@2x.png");
+    background-size: 46px 30px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    outline: none;
+    border: none;
+
+    @include viewport--lg {
+        display: block;
+    }
+
+    @include viewport--sm {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 23px;
+        height: 15px;
+        background-image: url("/img/menu-icon@1x.png");
+        background-size: 23px 15px;
+    }
 }

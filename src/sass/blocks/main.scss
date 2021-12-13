@@ -17,6 +17,10 @@
   @include viewport--lg {
     max-width: 800px;
   }
+
+  @include viewport--sm {
+    max-width: 100%;
+  }
 }
 
 .main__search {
@@ -99,6 +103,10 @@
     flex-wrap: wrap;
   }
 
+  @include viewport--sm {
+    flex-direction: column;
+  }
+
 }
 
 .main__news {
@@ -115,6 +123,11 @@
   @include viewport--lg {
     width: calc((100% - 20px) / 2);
     margin-bottom: 60px;
+  }
+
+  @include viewport--sm {
+    width: 100%;
+    margin-right: 0;
   }
 
 }
@@ -178,6 +191,10 @@
     margin-right: 0;
     margin-bottom: 60px;
   }
+
+  @include viewport--sm {
+    width: 100%;
+  }
 }
 
 .main__fresh-arrivals-list-item,
@@ -212,6 +229,12 @@
 
   @include viewport--lg {
     width: calc((100% - 20px) / 2);
+  }
+
+  @include viewport--sm {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 60px;
   }
 }
 
@@ -256,6 +279,11 @@
 
   @include viewport--lg {
     width: calc((100% - 20px) / 2);
+  }
+
+  @include viewport--sm {
+    width: 100%;
+    margin-right: 0;
   }
 }
   
