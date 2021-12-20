@@ -286,4 +286,16 @@
     margin-right: 0;
   }
 }
+
+.main__search__container {
+  width: 100%;
+  padding: 30px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: $color-white;
+  border-radius: 10px;
+
+}
   

@@ -1,11 +1,15 @@
 .main-screen {
     width: 100%;
-    min-height: 830px;
+    min-height: 200px;
     padding: 0 70px 0;
     display: flex;
   
     a[href] {
       @include link-hover-active;
+    }
+
+    &--heigh {
+      min-height: 830px;
     }
   }
   
