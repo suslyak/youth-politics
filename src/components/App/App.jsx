@@ -7,7 +7,7 @@ import Search from '../SearchLine/SearchLine';
 const App = () => {
   return (
     <Switch>
-      <Route exact path={'/index.html'}>
+      <Route exact path={'/'}>
         <SearchLine />
       </Route>
     </Switch>

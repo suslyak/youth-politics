@@ -1,0 +1,51 @@
+.fasets-form {
+    display: flex;
+    flex-direction: column;
+
+    button[type='submit'] {
+        height: 46px;
+        margin-top: 20px;
+        padding: 0 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        background-color: transparent;
+        color: $color-default-black;
+        border: 2px solid $color-black;
+        cursor: pointer;
+        transition: background-color 0.3s ease-out, opacity  0.3s ease-out;
+    
+        &:focus {
+          background-color: $color-regent-st-blue;
+        }
+    
+        &:active {
+          background-color: $color-regent-st-blue;
+        }
+    
+        &:hover {
+          background-color: $color-regent-st-blue;
+        }
+      }
+}
+
+.fasets-form__field {
+    width: 100%;
+    margin-bottom: 20px;
+
+    &:last-child {
+        margin-bottom: 0;  
+    }
+
+    input {
+        width: 100%;
+        border-color: black;
+    }
+}
+
+.fasets-form__label {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}

@@ -5,15 +5,14 @@ import Search from '../Search/Search';
 
 
 const SearchApp = () => {
-  const location = useLocation();
-  console.log(location);
+  //const location = useLocation();
+  //console.log(location);
   return (
     <Switch>
-        <Route exact path={'/search.html'}>
+        <Route path={'/search.html'}>
             <Search />
         </Route>
-    </Switch>
-        )
+    </Switch>)
 };
 
 export default SearchApp;

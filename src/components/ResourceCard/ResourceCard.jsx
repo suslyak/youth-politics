@@ -6,7 +6,7 @@ const ResourceCard = ({data}) => {
     <li className="resource-card">
         <img
             className="resource-card_resource-picture"
-            src={data.picture || `img/no-resource-picture@1x.jpg`}
+            src={data.picture || `img/zaglushka_02.jpg`}
             alt="обложка ресурса"
         />
         <article className="resource-card__info">
@@ -21,12 +21,12 @@ const ResourceCard = ({data}) => {
                 {!!data.meta.autors &&
                 <tr>
                     <td>Авторы:</td>
-                    <td>{data.meta.autors.map((x, i) => (i === 0) ? x : `, ${x}`)}</td>
+                    <td>{data.meta.autors.join(', ')}</td>
                 </tr>}
-                {!!data.meta.orgaization &&
+                {!!data.meta.organization &&
                 <tr>
                     <td>Организация:</td>
-                    <td>{data.meta.orgaization}</td>
+                    <td>{data.meta.organization}</td>
                 </tr>}
                 {!!data.meta.collection &&
                 <tr>
