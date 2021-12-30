@@ -2,14 +2,14 @@ import {ActionType} from '../action';
 
 const initialState = {
     query: ``,
-    results: []
+    results: [],
 };
 
 const search = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_QUERY:
-      {console.log(`d`);
-          return {
+      {
+        return {
         ...state,
         query: action.payload
       }};
