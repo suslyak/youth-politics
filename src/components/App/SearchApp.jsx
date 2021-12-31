@@ -5,8 +5,6 @@ import Search from '../Search/Search';
 
 
 const SearchApp = () => {
-  //const location = useLocation();
-  //console.log(location);
   return (
     <Switch>
         <Route path={'/search.html'}>

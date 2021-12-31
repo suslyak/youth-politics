@@ -7,7 +7,7 @@
 }
 
 .results__list {
-    width: calc(100% - 320px);
+    width: calc(((100% - 180px) / 10) * 7 + 120px);
     display: flex;
     flex-direction: column;
     position: relative;
@@ -18,7 +18,8 @@
 }
 
 .results__faset-filters {
-    width: 240px;
+    width: calc(((100% - 180px) / 10) * 3 + 40px);
+    padding: 15px 0;
     margin-left: auto;
 }
     

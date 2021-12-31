@@ -1,6 +1,7 @@
 export const ActionType = {
     CHANGE_QUERY: `search/changeQuery`,
-    CHANGE_RESULTS: `search/chanfeResults`,
+    CHANGE_RESULTS: `search/changeResults`,
+    PUT_CATEGORIES: `dict/putCategories`,
     PUT_COUNTRIES: `dict/putCountries`,
     PUT_SUBJECTS: `dict/putSubject`,
     PUT_SUBSUBJECTS: `dict/putSubSubject`,
@@ -20,6 +21,13 @@ export const changeResults = (results) => {
     return {
         type: ActionType.CHANGE_RESULTS,
         payload: results,
+    };
+};
+
+export const putCategories = (data) => {
+    return {
+        type: ActionType.PUT_CATEGORIES,
+        payload: data,
     };
 };
 

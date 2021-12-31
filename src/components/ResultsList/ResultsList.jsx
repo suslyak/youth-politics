@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import ResourceCard from '../ResourceCard/ResourceCard';
 import FasetsForm from '../FasetsForm/FasetsForm';
 
-const ResultsList = ({searchResult}) => {
-    const [form, setForm] = useState({query: ''});
-    const [results, setResults] = useState(searchResult);
-    
+const ResultsList = ({res}) => {
+    const [searchResults, setSearchResults] = useState(res);
+
     const onChange = (e) => {
         e.persist();
         setForm((prevForm) => ({
@@ -16,33 +16,38 @@ const ResultsList = ({searchResult}) => {
 
     const onFiltersSubmit = (values) => {
         const getFilters = (metaObject) => {
-            return Object.keys(values).map((item) => values[item].length ? values[item].map(x=>x.label).includes(metaObject[item]) : true).
+            return Object.keys(values).map((item) => values[item].length ? values[item].map(x=>x.value).includes(metaObject[item]) : true).
             reduce((collector, value, index, array) => {
                 return collector && value;
               }, true);
         };
+        console.log(values);
 
-        setResults(searchResult.filter((item)=> getFilters(item.meta)));
+        setSearchResults(res.filter((item) => getFilters(item)));
     }
 
     const filters = [
-        {name: 'collection', labelText: 'Коллекция', title: 'Коллекция'},
-        {name: 'theme', labelText: 'Тематика', title: 'Тематика'},
+        {name: 'category', labelText: 'Рубрика', title: 'Рубрика'},
+        {name: 'subject_1', labelText: 'Тематика', title: 'Тематика'},
+        {name: 'subject_2', labelText: 'Подуровень тематики', title: 'Подуровень тематики'},
         {name: 'organization', labelText: 'Организация', title: 'Организация'},
-        {name: 'autors', labelText: 'Авторы', title: 'Авторы'},
-        {name: 'type', labelText: 'Тип', title: 'Тип'}
+        {name: 'authors', labelText: 'Авторы', title: 'Авторы'},
+        {name: 'doctype', labelText: 'Тип', title: 'Тип'},
+        {name: 'country', labelText: 'Страна', title: 'Страна'},
+        {name: 'lang', labelText: 'Язык', title: 'Язык'},
     ];
 
-  return (
-    <>
-        <section className="results">
-            <ol className="results__list">
-                {results.map((item, index) => <ResourceCard key={`resource-${index}`} data={item} />)}
-            </ol>
-            <FasetsForm data={searchResult.map(x=>x.meta)} filters={filters} onSubmit={onFiltersSubmit}/>
-        </section>
-        
-    </>)
+    console.log(searchResults);
+    return (
+        <>
+            <section className="results">
+                <ol className="results__list">
+                    {searchResults.map((item, index) => <ResourceCard key={`resource-${index}`} data={item} />)}
+                </ol>
+                <FasetsForm data={searchResults} filters={filters} onSubmit={onFiltersSubmit}/>
+            </section>
+            
+        </>)
 };
 
 export default ResultsList;

@@ -3,7 +3,8 @@ import {ActionType} from '../action';
 const initialState = {
     query: ``,
     results: [],
-};
+    isResultsLoaded: false,
+ };
 
 const search = (state = initialState, action) => {
   switch (action.type) {
@@ -16,7 +17,8 @@ const search = (state = initialState, action) => {
     case ActionType.CHANGE_RESULTS:
     return {
         ...state,
-        results: action.payload
+        results: action.payload,
+        isResultsLoaded: true
     };
     default:
       return state;

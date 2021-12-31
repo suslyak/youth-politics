@@ -1,14 +1,27 @@
 import React, {useState} from 'react';
+import {useSelector} from 'react-redux';
 
 const ResourceCard = ({data}) => {
 
+const {
+    categories,
+    countries,
+    organizations,
+    subjects,
+    subSubjects,
+    langs,
+    types} = useSelector((state) => state.DICT);
+
   return (
     <li className="resource-card">
-        <img
-            className="resource-card_resource-picture"
-            src={data.picture || `img/zaglushka_02.jpg`}
-            alt="обложка ресурса"
-        />
+        <div className="resource-card__thumbnail">
+            <img
+                className="resource-card_resource-picture"
+                src={`thumbs/${data.file.thumb}` || `img/zaglushka_02.jpg`}
+                alt="обложка ресурса"
+            />
+            <span>{`PDF, ${data.file.size ? `${Math.round(data.file.size / 1024)} Кб` : ``}`}</span>
+        </div>
         <article className="resource-card__info">
             <header className="resource-card__header">
             <a href="/search.html#">
@@ -18,34 +31,48 @@ const ResourceCard = ({data}) => {
             <section className="resource-card__meta">
             <table>
                 <tbody>
-                {!!data.meta.autors &&
+                {!!data.authors &&
                 <tr>
                     <td>Авторы:</td>
-                    <td>{data.meta.autors.join(', ')}</td>
+                    <td>{data.authors}</td>
                 </tr>}
-                {!!data.meta.organization &&
+                {!!data.organization &&
                 <tr>
                     <td>Организация:</td>
-                    <td>{data.meta.organization}</td>
+                    <td>{organizations.filter((x) => x.id === data.organization).map(x => x.ru)}</td>
                 </tr>}
-                {!!data.meta.collection &&
+                {!!data.category &&
                 <tr>
-                    <td>Коллекция:</td>
-                    <td>{data.meta.collection}</td>
+                    <td>Рубрика:</td>
+                    <td>{categories.filter((x) => x.id === data.category).map(x => x.ru)}</td>
                 </tr>}
-                {!!data.meta.theme &&
+                {!!data.subject_1 &&
                 <tr>
                     <td>Тематика:</td>
-                    <td>{data.meta.theme}</td>
+                    <td>{subjects.filter((x) => x.id === data.subject_1).map(x => x.ru)}</td>
                 </tr>}
-                {!!data.meta.type &&
+                {!!data.subject_2 &&
+                <tr>
+                    <td>Подуровень тематики:</td>
+                    <td>{subSubjects.filter((x) => x.id === data.subject_2).map(x => x.ru)}</td>
+                </tr>}
+                {!!data.doctype &&
                 <tr>
                     <td>Тип:</td>
-                    <td>{data.meta.type}</td>
+                    <td>{types.filter((x) => x.id === data.doctype).map(x => x.ru)}</td>
+                </tr>}
+                {!!data.doctype &&
+                <tr>
+                    <td>Страна:</td>
+                    <td>{countries.filter((x) => x.id === data.country).map(x => x.ru)}</td>
+                </tr>}
+                {!!data.lang &&
+                <tr>
+                    <td>Язык:</td>
+                    <td>{langs.filter((x) => x.id === data.lang).map(x => x.ru)}</td>
                 </tr>}
                 </tbody>
             </table>
-            <footer>{`${data.filetype || ``}, ${data.filesize ?  `${Math.round(data.filesize / 1024)} Кб` : ``}`}</footer>
             </section>
         </article>
         </li>)

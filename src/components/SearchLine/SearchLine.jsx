@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
-
+import {useHistory} from "react-router-dom";
 const SearchLine = () => {
   const [form, setForm]  = useState({query: ''});
+
+  const history = useHistory();
+
   const onChange = (e) => {
     e.persist();
     setForm((prevForm) => ({
@@ -9,9 +12,14 @@ const SearchLine = () => {
       query: e.target.value
     }));
   }
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    window.location.href = `/search.html?entity=Book&filter=[{"title,title_ru,authors":{"$match":"${form.query}"}}]`;
+  }
   
   return (
-    <form action="" className="main__search-form">
+    <form action="" className="main__search-form" onSubmit={(e) => onSubmit(e)}>
       <div className="main__search-form-fields">
         <input
           id="query"

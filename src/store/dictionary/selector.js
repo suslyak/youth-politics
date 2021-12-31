@@ -1,5 +1,6 @@
 import {NameSpace} from '../root-reducer';
 
+export const getCountries = (state) => state[NameSpace.DICT].categories;
 export const getCountries = (state) => state[NameSpace.DICT].countries;
 export const getOrganizations = (state) => state[NameSpace.DICT].organizations;
 export const getSubjects = (state) => state[NameSpace.DICT].subjects;

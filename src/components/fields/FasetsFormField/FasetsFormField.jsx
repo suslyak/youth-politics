@@ -38,7 +38,7 @@ const customStyles = {
     })
 };
 
-const FasetsFormField = ({label, placeholder, input, name, options}) => {
+const FasetsFormField = ({label, placeholder, input, name, options = [], optionsDictionary = [], facetFilterName}) => {   
 
     const Menu = (props) => {
         return (
@@ -73,7 +73,12 @@ const FasetsFormField = ({label, placeholder, input, name, options}) => {
         };
 
     const getOptions = () => {
-        return options.map((item, index) => ({label: item, value: index}))
+        return options.map((item, index) => ({
+            label: optionsDictionary.hasOwnProperty(facetFilterName) && !!optionsDictionary[facetFilterName]
+                ? optionsDictionary[facetFilterName].filter(x => x.id === item).map(x => x.ru).join(' ')
+                : item,
+            value: item
+        }))
     }
 
     return (<div className="fasets-form__field">
@@ -93,7 +98,6 @@ const FasetsFormField = ({label, placeholder, input, name, options}) => {
                     hideSelectedOptions={false}
                     components={{Menu, Option, MenuList, DropdownIndicator: null}}
                     />
-            
             </div>
     );
 };
