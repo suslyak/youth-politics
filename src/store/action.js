@@ -1,6 +1,7 @@
 export const ActionType = {
     CHANGE_QUERY: `search/changeQuery`,
     CHANGE_RESULTS: `search/changeResults`,
+    CHANGE_IS_RESULTS_LOADED: `search/changeIsResultsLoaded`,
     PUT_CATEGORIES: `dict/putCategories`,
     PUT_COUNTRIES: `dict/putCountries`,
     PUT_SUBJECTS: `dict/putSubject`,
@@ -21,6 +22,13 @@ export const changeResults = (results) => {
     return {
         type: ActionType.CHANGE_RESULTS,
         payload: results,
+    };
+};
+
+export const changeIsResultsLoaded = (flag) => {
+    return {
+        type: ActionType.CHANGE_IS_RESULTS_LOADED,
+        payload: flag,
     };
 };
 

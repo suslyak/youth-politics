@@ -17,7 +17,7 @@ const {
         <div className="resource-card__thumbnail">
             <img
                 className="resource-card_resource-picture"
-                src={`thumbs/${data.file.thumb}` || `img/zaglushka_02.jpg`}
+                src={`thumbs/${data.file.thumb || `zaglushka_02.jpg`}`}
                 alt="обложка ресурса"
             />
             <span>{`PDF, ${data.file.size ? `${Math.round(data.file.size / 1024)} Кб` : ``}`}</span>

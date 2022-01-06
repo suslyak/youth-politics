@@ -3,8 +3,13 @@ import {useSelector, useDispatch} from 'react-redux';
 import ResourceCard from '../ResourceCard/ResourceCard';
 import FasetsForm from '../FasetsForm/FasetsForm';
 
-const ResultsList = ({res}) => {
-    const [searchResults, setSearchResults] = useState(res);
+const ResultsList = () => {
+    const {results, isResultsLoaded} = useSelector((state) => state.SEARCH);
+    const [searchResults, setSearchResults] = useState([]);
+
+    useEffect(() => {
+        setSearchResults(results)
+    }, [isResultsLoaded])
 
     const onChange = (e) => {
         e.persist();
@@ -21,9 +26,8 @@ const ResultsList = ({res}) => {
                 return collector && value;
               }, true);
         };
-        console.log(values);
 
-        setSearchResults(res.filter((item) => getFilters(item)));
+        setSearchResults(results.filter((item) => getFilters(item)));
     }
 
     const filters = [
@@ -37,7 +41,13 @@ const ResultsList = ({res}) => {
         {name: 'lang', labelText: 'Язык', title: 'Язык'},
     ];
 
-    console.log(searchResults);
+    if (!isResultsLoaded) {
+        return (
+            <section className="results">
+                Идёт поиск...
+            </section>)
+    }
+
     return (
         <>
             <section className="results">

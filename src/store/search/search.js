@@ -20,6 +20,11 @@ const search = (state = initialState, action) => {
         results: action.payload,
         isResultsLoaded: true
     };
+    case ActionType.CHANGE_IS_RESULTS_LOADED:
+    return {
+        ...state,
+        isResultsLoaded: action.payload
+    };
     default:
       return state;
   }
