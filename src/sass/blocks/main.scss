@@ -45,7 +45,6 @@
     height: 52px;
     padding: 10px 20px 10px;
     border: 2px solid $color-black;
-    border-right: none;
     transition: border-color 0.3s ease-out, opacity  0.3s ease-out;
 
     &:focus,
@@ -65,6 +64,7 @@
     background-color: transparent;
     color: $color-default-black;
     border: 2px solid $color-black;
+    border-left: none;
     cursor: pointer;
     transition: background-color 0.3s ease-out, opacity  0.3s ease-out;
 
@@ -296,4 +296,114 @@
   justify-content: flex-start;
   background-color: $color-alice-blue;
 }
+
+.main__advanced-button {
+  width: 158px;
+  height: 52px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 12px;
+  background-color: transparent;
+  color: $color-default-black;
+  border-top: 2px solid $color-black;
+  border-left: 2px solid $color-black;
+  border-bottom: 2px solid $color-black;
+  border-right: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-out, opacity  0.3s ease-out;
+
+  &:focus {
+    background-color: $color-regent-st-blue;
+  }
+
+  &:active {
+    background-color: $color-regent-st-blue;
+  }
+
+  &:hover {
+    background-color: $color-regent-st-blue;
+  }
+
+  span {
+    position: relative;
+    font-size: 34px;
+    margin-right: 10px;
+  }
+}
+
+.main__advanced-search {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #000;
+  padding: 20px;
+}
+
+.main__advanced-search-fields {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  label {
+    min-width: 135px;
+    flex-shrink: 0;
+    padding: 0 20px;
+  }
+
+  input {
+    flex-grow: 1;
+    height: 32px;
+    padding: 6px 10px 6px;
+    border: 2px solid $color-black;
+    transition: border-color 0.3s ease-out, opacity  0.3s ease-out;
+
+    &:focus,
+    &:active,
+    &:hover {
+      border-color: $color-regent-st-blue;
+    }
+  }
+
+  &--short {
+    width: calc((100% - 40px) / 3);
+    margin-right: 20px;
+    margin-bottom: 0;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:not(:first-child) {
+      label {
+        min-width: auto;
+      }
+    }
+
+    input {
+      max-width: calc(100% - 135px);
+    }
+  }
+}
+
+.main__advanced-search-fields-row {
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.main__advanced-search-select-field {
+  width: calc(100% - 135px);
+}
+
   

@@ -44,7 +44,7 @@ ReactDOM.render(
             <SearchApp />
           </Route>
           <Route>
-            {() => (<>Аумя нету!</>)}
+            {() => (<>No app for this route.</>)}
           </Route>
         </Switch>
       </BrowserRouter>

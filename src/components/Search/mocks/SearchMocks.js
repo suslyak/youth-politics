@@ -192,10 +192,18 @@ export const SEARCH_RESULTS = [
         filesize: 142234
     },
 ]
-// https://youthlib.mirea.ru/_search?entity=Book&filter=%5B%7B%22authors%22%3A%7B%22%24match%22%3A%22%D0%9A%D0%B0%D1%82%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F%20%D0%94.%D0%9B.%22%7D%7D%5D&limit=20
+//https://youthlib.mirea.ru/_search?entity=Book&filter=%5B%7B%22authors%22%3A%7B%22%24match%22%3A%22%D0%9A%D0%B0%D1%82%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F%20%D0%94.%D0%9B.%22%7D%7D%5D&limit=20
 //https://youthlib.mirea.ru/_search?entity=Book&filter=[{"authors":{"$match":"Кац"}}]&limit=20
 //https://youthlib.mirea.ru/_search?entity=Book&filter=[{"title,title_ru":{"$match":"молодежи"}},{"authors":{"$match":"Катковская Д.Л."}}]
 //https://youthlib.mirea.ru/_search?entity=Book&filter=[{"title,title_ru":{"$match":"Катковская Д.Л. молодежи"}},{"authors":{"$match":"Катковская Д.Л. молодежи"}}]
+//https://youthlib.mirea.ru/_search?entity=Book&filter=[{"year":{"$gte":"2020"}},{"year":{"$lte":"2021"}}]
+//https://youthlib.mirea.ru/_search?entity=Book&filter=[{"title,title_ru":{"$match":"трансформации"}},{"year":{"$gte":"2020"}},{"year":{"$lte":"2021"}}]
+//https://youthlib.mirea.ru/_search?entity=Book&filter=[{"title,title_ru":{"$match":"трансформации"}},{"authors":{"$match":"Катковская Д.Л."}},{"year":{"$gte":"2020"}},{"year":{"$lte":"2021"}}]
+//https://youthlib.mirea.ru/_search?entity=Book&filter=[{"year":{"$gte":"2018"}},{"lang":{"$in":[3,4]}}]
+//https://youthlib.mirea.ru/_search?entity=Book&filter=[{"year":{"$gte":"2018"}},{"country":{"$in":[19,15]}},{"lang":{"$in":[3,4]}}]
+//https://youthlib.mirea.ru/_search?entity=Book&filter=[{"country":{"$in":[3]}}]
+//https://youthlib.mirea.ru/_search?entity=Book&filter=[{"organization":{"$in":[297]}}]
+//https://youthlib.mirea.ru/_search?entity=Book&filter=[{"doctype":{"$in":[40]}}]
 export const ApiResponse = [
     [
         {
