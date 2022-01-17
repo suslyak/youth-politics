@@ -7,19 +7,103 @@
 }
 
 .results__list {
-    width: calc(((100% - 180px) / 10) * 7 + 120px);
+    width: 100%;  
     display: flex;
     flex-direction: column;
     position: relative;
     align-items: flex-start;
     padding: 0;
-    margin: 0 20px 0 0;
+    margin: 0 0 20px;
     list-style: decimal;
+}
+
+.results__container {
+    width: calc(((100% - 180px) / 10) * 7 + 120px);
+    margin: 0 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .results__faset-filters {
     width: calc(((100% - 180px) / 10) * 3 + 40px);
     padding: 15px 0;
     margin-left: auto;
+}
+
+.results__header {
+    width: 100%;
+    margin: 0 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {        
+        margin: 0 20px 0 0;
+    }
+}
+
+.results__pages {
+    flex: 0.4 0 auto;
+    display: flex;
+
+    @include clear-ul;    
+}
+
+.results__page {
+    position: relative;
+    min-width: 32px;
+    font-size: 16px;
+    line-height: 1em;
+    margin-right: 10px;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    button {
+        width: 100%;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        background-color: transparent;
+        color: $color-default-black;
+        border: 2px solid $color-black;
+        cursor: pointer;
+        transition: background-color 0.3s ease-out, opacity  0.3s ease-out;
+    
+        &:focus {
+        background-color: $color-regent-st-blue;
+        }
+    
+        &:active {
+        background-color: $color-regent-st-blue;
+        }
+    
+        &:hover {
+        background-color: $color-regent-st-blue;
+        }
+    }
+
+    &--selected {
+        button {
+            cursor: default;
+            background-color: $color-regent-st-blue;
+        }
+    }
+
+    &--skip-to-last {
+        margin-left: 1em;
+
+        &::before {
+            content: '...';
+            position: absolute;
+            left: - 1em;
+            bottom: 0
+        }
+    }
 }
     

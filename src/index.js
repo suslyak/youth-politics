@@ -9,6 +9,7 @@ import thunk from "redux-thunk";
 import {composeWithDevTools} from 'redux-devtools-extension';
 import App from './components/App/App';
 import SearchApp from './components/App/SearchApp';
+import BookApp from './components/App/BookApp';
 import Search from './components/Search/Search';
 import browserHistory from "./browser-history";
 import {createAPI} from "./services/api";
@@ -42,6 +43,9 @@ ReactDOM.render(
           </Route>
           <Route path={'/search.html'}>
             <SearchApp />
+          </Route>
+          <Route path={'/reader.html'}>
+            <BookApp />
           </Route>
           <Route>
             {() => (<>No app for this route.</>)}

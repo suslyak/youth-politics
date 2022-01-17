@@ -28,4 +28,8 @@
         background: url("/img/main-screen-bg-mobile@2x.jpg") no-repeat center top/768px 836px transparent;
         }
     }
+
+    &--no-height {
+      min-height: auto;
+    }
 }

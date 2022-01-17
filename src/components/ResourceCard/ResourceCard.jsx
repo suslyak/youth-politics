@@ -15,16 +15,18 @@ const {
   return (
     <li className="resource-card">
         <div className="resource-card__thumbnail">
-            <img
-                className="resource-card_resource-picture"
-                src={`thumbs/${data.file.thumb || `zaglushka_02.jpg`}`}
-                alt="обложка ресурса"
-            />
+            <a href="/resource.html">
+                <img
+                    className="resource-card_resource-picture"
+                    src={`thumbs/${data.file.thumb || `zaglushka_02.jpg`}`}
+                    alt="обложка ресурса"
+                />
+            </a>
             <span>{`PDF, ${data.file.size ? `${Math.round(data.file.size / 1024)} Кб` : ``}`}</span>
         </div>
         <article className="resource-card__info">
             <header className="resource-card__header">
-            <a href="/search.html#">
+            <a href="/resource.html">
                 <h2>{data.title ? `${data.title[0].toUpperCase()}${data.title.toLowerCase().slice(1)}` : ``}</h2>
             </a>
             </header>

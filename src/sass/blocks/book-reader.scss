@@ -1,0 +1,77 @@
+.book-reader {
+    position: relative;
+    width: 100%;
+    padding: 40px;
+    margin-bottom: -150px;
+    background-color: $color-alice-blue;
+}
+
+.book-reader__page-container {
+    position: relative;
+}
+
+.book-reader__thumbs-div {
+    position: absolute;
+    left: 0;
+    top: 40px;
+    
+    width: 16%;
+
+    & > div:first-child {
+        padding: 20px;
+        position: inherit;
+    }
+
+    & .react-pdf__Page__canvas {
+        cursor: pointer;
+        //box-shadow: 0px 4px 12px 0px $color-dark-blue-08;
+    }
+}
+
+.book-reader__current-page-thumb {
+    & .react-pdf__Page__canvas {        
+        box-shadow: 0px 4px 12px 0px $color-dark-blue-08;
+    }
+}
+
+.book-reader__pages-div {
+    width: 84%;
+    margin-left: 16%;
+}
+
+.book-reader__thumbs-page-number {
+    position: absolute;
+    bottom: 13px;
+    font-size: 20px;
+    left: 50%;
+    transform: translate(-50%, 0px) rotate(0deg);
+}
+
+.book-reader__pages-controls {
+    width: 220px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    justify-content: space-around;
+    transform: translate(-20px, 0px);
+    
+    label {
+        margin-right: 10px;
+    }
+
+    input {
+        flex-grow: 0;
+        width: 60px;
+        height: 30px;
+        margin-right: 10px;
+        padding: 5px 3px 5px;
+        border: 1px solid $color-black;
+        text-align: center;
+        transition: border-color 0.3s ease-out, opacity  0.3s ease-out;
+    
+        &:focus,
+        &:active,
+        &:hover {
+          border-color: $color-regent-st-blue;
+        }
+    }
+}

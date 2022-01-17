@@ -2,7 +2,7 @@ import React, {useState , useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useLocation} from "react-router-dom";
 import SearchLine from '../SearchLine/SearchLine';
-import ResultsList from '../ResultsList/ResultsList';
+import Results from '../Results/Results';
 import {SEARCH_RESULTS} from './mocks/SearchMocks';
 import {changeIsResultsLoaded} from '../../store/action';
 import {
@@ -37,9 +37,9 @@ const Search = () => {
 
   return (
     <>
-      <SearchLine />
+      <SearchLine advancedSearch={false}/>
       <div className="search">
-        <ResultsList/>
+        <Results/>
       </div>
     </>)
 };
