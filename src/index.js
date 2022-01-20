@@ -11,6 +11,7 @@ import App from './components/App/App';
 import SearchApp from './components/App/SearchApp';
 import BookApp from './components/App/BookApp';
 import Search from './components/Search/Search';
+import SwitchMyRoutes from './components/SwitchMyRoutes/SwitchMyRoutes';
 import browserHistory from "./browser-history";
 import {createAPI} from "./services/api";
 import rootReducer from "./store/root-reducer"
@@ -38,7 +39,7 @@ ReactDOM.render(
       <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter history={browserHistory}>
         <Switch>
-          <Route exact path={'/'}>
+          {/*<Route exact path={'/'}>
             <App />
           </Route>
           <Route path={'/search.html'}>
@@ -49,7 +50,13 @@ ReactDOM.render(
           </Route>
           <Route>
             {() => (<>No app for this route.</>)}
-          </Route>
+        </Route>*/}
+          <Route path="/ru" render={(match, location)=> <SwitchMyRoutes locale={"ru"} match={match}/>} />
+          <Route path="/en" render={(match, location)=> <SwitchMyRoutes locale={"en"} match={match}/>} />
+          <Route render={({location}) => <Redirect to={`/ru${location.pathname}${location.search}`}/>}/>
+          {/*<Route>
+            {() => (<>No app for this route!</>)}
+          </Route>*/}
         </Switch>
       </BrowserRouter>
       </PersistGate>

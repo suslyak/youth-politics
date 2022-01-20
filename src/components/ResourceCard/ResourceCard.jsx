@@ -12,6 +12,8 @@ const {
     langs,
     types} = useSelector((state) => state.DICT);
 
+const {locale} = useSelector((state) => state.LOCALE);
+
   return (
     <li className="resource-card">
         <div className="resource-card__thumbnail">
@@ -22,7 +24,7 @@ const {
                     alt="обложка ресурса"
                 />
             </a>
-            <span>{`PDF, ${data.file.size ? `${Math.round(data.file.size / 1024)} Кб` : ``}`}</span>
+            <span>{`PDF, ${data.file.size ? `${Math.round(data.file.size / 1024)} Kb` : ``}`}</span>
         </div>
         <article className="resource-card__info">
             <header className="resource-card__header">
@@ -35,49 +37,49 @@ const {
                 <tbody>
                 {!!data.authors &&
                 <tr>
-                    <td>Авторы:</td>
+                    <td>{!!locale.AUTHOR_FIELD_LABEL ? `${locale.AUTHOR_FIELD_LABEL}` : `Авторы:`}</td>
                     <td>{data.authors}</td>
                 </tr>}
                 {!!data.organization &&
                 <tr>
-                    <td>Организация:</td>
-                    <td>{organizations.filter((x) => x.id === data.organization).map(x => x.ru)}</td>
+                    <td>{!!locale.ORGANIZATION_FIELD_LABEL ? `${locale.ORGANIZATION_FIELD_LABEL}` : `Организация:`}</td>
+                    <td>{organizations.filter((x) => x.id === data.organization).map(x => x[locale.LOCALE])}</td>
                 </tr>}
                 {!!data.category &&
                 <tr>
-                    <td>Рубрика:</td>
-                    <td>{categories.filter((x) => x.id === data.category).map(x => x.ru)}</td>
+                    <td>{!!locale.CATEGORY_FIELD_LABEL ? `${locale.CATEGORY_FIELD_LABEL}` : `Рубрика:`}</td>
+                    <td>{categories.filter((x) => x.id === data.category).map(x => x[locale.LOCALE])}</td>
                 </tr>}
                 {!!data.subject_1 &&
                 <tr>
-                    <td>Тематика:</td>
-                    <td>{subjects.filter((x) => x.id === data.subject_1).map(x => x.ru)}</td>
+                    <td>{!!locale.SUBJECT_FIELD_LABEL ? `${locale.SUBJECT_FIELD_LABEL}` : `Тематика:`}</td>
+                    <td>{subjects.filter((x) => x.id === data.subject_1).map(x => x[locale.LOCALE])}</td>
                 </tr>}
                 {!!data.subject_2 &&
                 <tr>
-                    <td>Подуровень тематики:</td>
-                    <td>{subSubjects.filter((x) => x.id === data.subject_2).map(x => x.ru)}</td>
+                    <td>{!!locale.SUB_SUBJECT_FIELD_LABEL ? <span dangerouslySetInnerHTML={{__html: locale.SUB_SUBJECT_FIELD_LABEL}}></span> : <>Тематика<br/>(подуровни):</>}</td>
+                    <td>{subSubjects.filter((x) => x.id === data.subject_2).map(x => x[locale.LOCALE])}</td>
                 </tr>}
                 {!!data.doctype &&
                 <tr>
-                    <td>Тип:</td>
-                    <td>{types.filter((x) => x.id === data.doctype).map(x => x.ru)}</td>
+                    <td>{!!locale.DOCTYPE_FIELD_LABEL ? <span dangerouslySetInnerHTML={{__html: locale.DOCTYPE_FIELD_LABEL}}></span> : `Тип документа:`}</td>
+                    <td>{types.filter((x) => x.id === data.doctype).map(x => x[locale.LOCALE])}</td>
                 </tr>}
                 {!!data.doctype &&
                 <tr>
-                    <td>Страна:</td>
-                    <td>{countries.filter((x) => x.id === data.country).map(x => x.ru)}</td>
+                    <td>{!!locale.COUNTRY_FIELD_LABEL ? `${locale.COUNTRY_FIELD_LABEL}` : `Страна:`}</td>
+                    <td>{countries.filter((x) => x.id === data.country).map(x => x[locale.LOCALE])}</td>
                 </tr>}
                 {!!data.lang &&
                 <tr>
-                    <td>Язык:</td>
-                    <td>{langs.filter((x) => x.id === data.lang).map(x => x.ru)}</td>
+                    <td>{!!locale.LANG_FIELD_LABEL ? `${locale.LANG_FIELD_LABEL}` : `Язык:`}</td>
+                    <td>{langs.filter((x) => x.id === data.lang).map(x => x[locale.LOCALE])}</td>
                 </tr>}
                 </tbody>
             </table>
             </section>
         </article>
-        </li>)
+    </li>)
 };
 
 export default ResourceCard;

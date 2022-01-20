@@ -2,6 +2,7 @@ export const ActionType = {
     CHANGE_QUERY: `search/changeQuery`,
     CHANGE_RESULTS: `search/changeResults`,
     CHANGE_IS_RESULTS_LOADED: `search/changeIsResultsLoaded`,
+    PUT_LOCALE: `dict/putLocale`,
     PUT_CATEGORIES: `dict/putCategories`,
     PUT_COUNTRIES: `dict/putCountries`,
     PUT_SUBJECTS: `dict/putSubject`,
@@ -29,6 +30,13 @@ export const changeIsResultsLoaded = (flag) => {
     return {
         type: ActionType.CHANGE_IS_RESULTS_LOADED,
         payload: flag,
+    };
+};
+
+export const putLocale = (locale) => {
+    return {
+        type: ActionType.PUT_LOCALE,
+        payload: locale,
     };
 };
 

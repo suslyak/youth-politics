@@ -8,6 +8,7 @@ import TextField from '../fields/TextField/TextField.jsx';
 import NumberField from '../fields/NumberField/NumberField';
 import moment from 'moment';
 
+
 const SearchLine = ({advancedSearch = true}) => {
   const [advanced, setAdvanced]  = useState(false);
   const [form, setForm]  = useState({query: '', author_query: ''});
@@ -20,6 +21,8 @@ const SearchLine = ({advancedSearch = true}) => {
     subSubjects,
     langs,
     types} = useSelector((state) => state.DICT);
+  
+  const {locale} = useSelector((state) => state.LOCALE);
 
   const optionsDict = {
     categories,
@@ -62,11 +65,11 @@ const SearchLine = ({advancedSearch = true}) => {
         }
         return `{"${filterName}":${queries[filterName]}}`});
 
-      return window.location.href = `/search.html?entity=Book&filter=[${filters.filter(x => !!x).join(',')}]`
+      return window.location.href = `${!!locale.LOCALE ? `/${locale.LOCALE}` : ``}/search.html?entity=Book&filter=[${filters.filter(x => !!x).join(',')}]`
     }
-    return window.location.href = `/search.html?entity=Book&filter=[{"name,title,title_ru,authors,year":{"$match":"${values.query}"}}]`
+    return window.location.href = `${!!locale.LOCALE ? `/${locale.LOCALE}` : ``}/search.html?entity=Book&filter=[{"name,title,title_ru,authors,year":{"$match":"${values.query}"}}]`
   }
-
+  console.log(locale);
   return (
       <Form
           onSubmit={values=> onSubmit(values)}
@@ -79,7 +82,9 @@ const SearchLine = ({advancedSearch = true}) => {
                 aria-label={`${advanced ? 'Закрыть' : 'Открыть'} расширенный поиск`}
                 onClick={() => {setAdvanced(!advanced)}}>
                     <span style={advanced ? {top:-3} : {}}>{advanced ? '-' : '+'}</span>
-                    {advanced ? <>Простой поиск</> : <>Расширенный<br/>поиск</>}
+                    {advanced 
+                      ? !!locale.SIMPLE_SEARCH ? locale.SIMPLE_SEARCH : `Простой поиск`
+                      : !!locale.ADVANCED_SEARCH ? locale.ADVANCED_SEARCH : `Расширенныйпоиск`}
             </button>}
             {!advanced && <><Field
                     component={TextField}
@@ -87,13 +92,13 @@ const SearchLine = ({advancedSearch = true}) => {
                     name={'query'}
                     id={'query'}
                     isRequired={true}
-                    /><label className="visually-hidden" htmlFor="query">Поиск</label></>}
+                    /><label className="visually-hidden" htmlFor="query">{!!locale.SEARCH ? `${locale.SEARCH}` : `Поиск`}</label></>}
             {advanced && <>
               <div className="main__advanced-search">
                 <AdvancedSearchFields optionsDict={optionsDict} values={values} labelsUpon={false}/>
               </div>
               </>}
-            <button type="submit">Найти</button>
+            <button type="submit">{!!locale.SEARCH ? `${locale.SEARCH}` : `Найти`}</button>
         </div>
     </form>)}/>
   );

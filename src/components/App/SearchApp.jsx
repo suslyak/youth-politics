@@ -5,9 +5,11 @@ import Search from '../Search/Search';
 
 
 const SearchApp = () => {
+    const location = useLocation();
+
   return (
     <Switch>
-        <Route path={'/search.html'}>
+        <Route path={'search/:locale/'}>
             <Search />
         </Route>
     </Switch>)

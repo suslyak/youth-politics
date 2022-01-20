@@ -456,7 +456,8 @@
     width: calc((100% - 20px) / 2);
 
     input {
-      max-width: 100%;
+      width: 100%;
+      max-width: inherit;
     }
   }
 }

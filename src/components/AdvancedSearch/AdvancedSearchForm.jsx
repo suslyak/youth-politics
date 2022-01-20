@@ -18,15 +18,17 @@ const AdvancedSearchForm = ({children = []}) => {
         subSubjects,
         langs,
         types} = useSelector((state) => state.DICT);
+
+    const {locale} = useSelector((state) => state.LOCALE);
     
-      const optionsDict = {
-        categories,
-        countries,
-        organizations,
-        subjects,
-        subSubjects,
-        langs,
-        types}
+    const optionsDict = {
+      categories,
+      countries,
+      organizations,
+      subjects,
+      subSubjects,
+      langs,
+      types}
 
     const onSubmit = (values) => {
         const queries = {
@@ -53,7 +55,7 @@ const AdvancedSearchForm = ({children = []}) => {
         const queryFilters = filters.filter(x => !!x).join(',');
 
         if (queryFilters) {
-            history.push(`/search.html?entity=Book&filter=[${queryFilters}]`);
+            history.push(`${!!locale.LOCALE ? `/${locale.LOCALE}` : ``}/search.html?entity=Book&filter=[${queryFilters}]`);
             dispatch(changeIsResultsLoaded(false));
             dispatch(fetchAuthorTitleResultsList(`?entity=Book&filter=[${queryFilters}]`));
         }
@@ -68,7 +70,7 @@ const AdvancedSearchForm = ({children = []}) => {
                             <AdvancedSearchFields optionsDict={optionsDict} values={values}/>
                             {children}
                         </div>
-                        <button type="submit">Найти</button>
+                        <button type="submit">{!!locale.SEARCH ? `${locale.SEARCH}` : `Найти`}</button>
                 </form>)}/>
   );
 };

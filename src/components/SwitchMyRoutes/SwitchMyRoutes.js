@@ -2,7 +2,7 @@ import React, {useState, useEffect } from 'react';
 import {useLocation, Redirect, Route, Switch} from "react-router-dom";
 import {useDispatch} from 'react-redux';
 import SearchLine from '../SearchLine/SearchLine';
-import Search from '../SearchLine/SearchLine';
+import Search from '../Search/Search';
 import {
   fetchCategoriesList,
   fetchCountriesList,
@@ -11,12 +11,13 @@ import {
   fetchSubSubjectsList,
   fetchLangsList,
   fetchTypesList} from '../../store/api-actions';
+import { putLocale } from '../../store/action';
 
-const App = () => {
+const SwitchMyRoutes = ({locale='ru', match}) => {
   const dispatch = useDispatch();
-  const location = useLocation();
 
   useEffect(() => {
+    dispatch(putLocale(locale));
     dispatch(fetchCountriesList());
     dispatch(fetchOrganiztionsList());
     dispatch(fetchSubjectsList());
@@ -28,11 +29,21 @@ const App = () => {
 
   return (
     <Switch>
-      <Route exact path={'/:locale/'}>
-        <SearchLine />
-      </Route>
+        <Route exact path={`/${locale}`}>
+            <SearchLine />
+        </Route>
+        <Route path={`/${locale}/index.html`}>
+            <SearchLine />
+        </Route>
+        
+        <Route path={`/${locale}/search.html`}>
+            <Search />
+        </Route>
+        <Route>
+            {() => (<>No app for this route.</>)}
+        </Route>
     </Switch>
   )
 };
 
-export default App;
+export default SwitchMyRoutes;

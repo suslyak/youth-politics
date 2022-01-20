@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import Select, { components, createFilter} from "react-select";
+import {useSelector} from 'react-redux';
 
 const customStyles = {
     input: (provided) => ({
@@ -44,6 +45,7 @@ const customStyles = {
 };
 
 const AdvancedSearchFormField = ({label, placeholder, input, name, options = [], id=''}) => {   
+    const {locale} = useSelector((state) => state.LOCALE);
 
     const Menu = (props) => {
         return (
@@ -85,7 +87,7 @@ const AdvancedSearchFormField = ({label, placeholder, input, name, options = [],
                     value={input.value}
                     blurInputOnSelect={true}
                     width='100%'
-                    placeholder={'Выберите'}
+                    placeholder={!!locale.SELECT_PLACEHOLDER ? `${locale.SELECT_PLACEHOLDER}` : `Выберите`}
                     options={options}
                     removeSelected={false}
                     closeMenuOnSelect={false}

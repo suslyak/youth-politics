@@ -1,17 +1,18 @@
 import React, {useState, useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import ResourceCard from '../ResourceCard/ResourceCard';
 import FasetsForm from '../FasetsForm/FasetsForm';
 import AdvancedSearchForm from '../AdvancedSearch/AdvancedSearchForm';
 import AdvancedSearchFormFields from '../AdvancedSearch/AdvancedSearchFields';
 
-const SEARCH_RESULTS_PER_PAGE = 7;
+const SEARCH_RESULTS_PER_PAGE = 5;
 const SEARCH_RESULTS_PAGES_RANGE = 3;
 
 const ResultsList = () => {
     const {results, isResultsLoaded} = useSelector((state) => state.SEARCH);
+    const {locale} = useSelector((state) => state.LOCALE);
+
     const [page, setPage] = useState({numberPage: 1, direction: 0});
-    //const [searchResults, setSearchResults] = useState([]);
 
     const PagesCount = Math.ceil(results.length / SEARCH_RESULTS_PER_PAGE);
 
@@ -20,7 +21,7 @@ const ResultsList = () => {
     if (!isResultsLoaded) {
         return (
             <section className="results">
-                Идёт поиск...
+                {!!locale.SEARCHING ? `${locale.SEARCHING}` : `Идёт поиск...`}
             </section>)
     }
 
@@ -38,7 +39,7 @@ const ResultsList = () => {
 
     return (<div className="results__container">
                 <div className="results__header">
-                    <h3>Найдено: {results.length}</h3>
+                    <h3>{!!locale.TOTAL_FOUND ? `${locale.TOTAL_FOUND}` : `Найдено`}: {results.length}</h3>
                     {(PagesCount > 1) && <ul className="results__pages">
                         {((page.numberPage !== 1) && (SEARCH_RESULTS_PAGES_RANGE < PagesCount)) && 
                             <li
@@ -82,7 +83,7 @@ const ResultsList = () => {
                     {getResultsToShow().map((item, index) => <ResourceCard key={`resource-${index}`} data={item} />)}
                 </ol>
                 <div className="results__header">
-                    <h3>Найдено: {results.length}</h3>
+                    <h3>{!!locale.TOTAL_FOUND ? `${locale.TOTAL_FOUND}` : `Найдено`}: {results.length}</h3>
                     {(PagesCount > 1) && <ul className="results__pages">
                         {((page.numberPage !== 1) && (SEARCH_RESULTS_PAGES_RANGE < PagesCount)) && 
                             <li
