@@ -19,8 +19,6 @@ export const i18n = {
         SELECT_PLACEHOLDER: `Выберите`,
         TOTAL_FOUND: `Найдено`,
         SEARCHING: `Идёт поиск...`
-
-
     },
     'en': {
         LOCALE: `en`,
@@ -41,6 +39,5 @@ export const i18n = {
         SELECT_PLACEHOLDER: `Choose`,
         TOTAL_FOUND: `Total found`,
         SEARCHING: `Searching...`
-
     }
 }

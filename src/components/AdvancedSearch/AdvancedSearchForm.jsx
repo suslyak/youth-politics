@@ -55,7 +55,7 @@ const AdvancedSearchForm = ({children = []}) => {
         const queryFilters = filters.filter(x => !!x).join(',');
 
         if (queryFilters) {
-            history.push(`${!!locale.LOCALE ? `/${locale.LOCALE}` : ``}/search.html?entity=Book&filter=[${queryFilters}]`);
+            history.push(`${!!locale.LOCALE ? `/${locale.LOCALE}` : ``}/search?entity=Book&filter=[${queryFilters}]`);
             dispatch(changeIsResultsLoaded(false));
             dispatch(fetchAuthorTitleResultsList(`?entity=Book&filter=[${queryFilters}]`));
         }
@@ -66,7 +66,7 @@ const AdvancedSearchForm = ({children = []}) => {
             onSubmit={values=> onSubmit(values)}
             render={({handleSubmit, pristine, form, submitting, values}) => (
                 <form action="" className="main__advanced-search-form" onSubmit={handleSubmit}>
-                        <div className="main__advanced-search main__advanced-search--no-border main__advanced-search--no-padding">
+                        <div className="main__advanced-search main__advanced-search--no-border main__advanced-search--no-padding main__advanced-search--no-background">
                             <AdvancedSearchFields optionsDict={optionsDict} values={values}/>
                             {children}
                         </div>

@@ -1,0 +1,145 @@
+{% extends "base.html.twig" %}
+
+{% block header %}
+<section class="main-screen main-screen--short">
+	<div class="main-screen__wrapper">
+	  <div class="page-header">        
+		<a class="logo" href="/">
+		  <img
+		  style="width: 90px; height: 127px;"
+		  src="/img/logo_minobr@1x.png"
+		  srcset="/img/logo_minobr@1x.png 1x, /img/logo_minobr@2x.png 2x"
+		  alt="лого Минобрнауки России"
+		  width="90"
+		  height="127">
+		</a>
+		<a class="logo" href="/">
+		  <!--1x 90px, 2x 180-->
+		  <img
+		  src="/img/logo_mirea@1x.png"
+		  srcset="/img/logo_mirea@1x.png 1x, /img/logo_mirea@2x.png 2x"
+		  alt="лого РТУ МИРЭА"
+		  width="90"
+		  height="115">
+		</a>
+		<h1>
+			{{ l10n['index_title'] }}
+		</h1>
+		<div class="page-header__menu">
+			<ul class="page-header__menu-list">
+				<li><a href="#">{{ l10n['top_menu_link-news'] }}</a><button type="button" class="page-header__menu-colse-button"></button></li>
+				<li><a href="#">{{ l10n['top_menu_link-latest'] }}</a></li>
+				<li><a href="#">{{ l10n['top_menu_link-collections'] }}</a></li>
+				<li><a href="#">{{ l10n['top_menu_link-popular'] }}</a></li>   
+			</ul>
+			<ul class="page-header__submenu-list">
+				<li><a href="#">{{ l10n['top_menu_link-about'] }}</a></li>
+				<li><a href="#">{{ l10n['top_menu_link-statistics'] }}</a></li>
+				<li><a href="#">{{ l10n['top_menu_link-help'] }}</a></li>
+				<li class="page-header__mobile-menu-only-item">
+					<a href="/ru" class="page-header__locale-switch-link">Рус</a>
+					&nbsp;/
+					<a href="/en" class="page-header__locale-switch-link">Eng</a>
+				</li> 
+			</ul>
+		</div>
+		<button class="menu-toggle" type="button" aria-label="Переключатель отображения меню" aria-pressed="false">              
+		</button>
+		<div class="page-header__right-menu">
+		  <ul class="page-header__right-menu-list">
+			<li><a href="/ru" class="page-header__locale-switch-link">Рус</a></li>
+			<li>/&nbsp;<a href="/en" class="page-header__locale-switch-link">Eng</a></li>
+		  </ul>
+		</div>
+	  </div>
+	</div>
+	<div class="page-header__blackout"></div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="main main--sky-color-bg">
+	<div  class="main__wrapper">
+		<section class="main__search-container">            
+			<div class="resource">
+			<h2>{{ book.title }}</h2>
+			<div class="resource__title-image">
+				<img
+					class="resource-card_resource-picture"
+					src='/thumbs/{{ book.file.thumb }}'
+					alt="обложка ресурса"
+				/>
+				
+			</div>
+			<section class="resource__info">
+				<table>
+					<tbody>
+						{% if book.authors %}
+						<tr>
+							<td>{{ l10n['authors'] }}:</td>
+							<td>{{ book.authors }}</td>
+						</tr>
+						{% endif %}
+						<tr>
+							<td>{{ l10n['year'] }}:</td>
+							<td>{{ book.year }}</td>
+						</tr>
+						<tr>
+							<td>{{ l10n['resource_codes'] }}:</td>
+							<td>{{ book.codes }}</td>
+						</tr>
+						<tr>
+							<td>{{ l10n['resource_pages'] }}:</td>
+							<td>{{ book.pages }}</td>
+						</tr>
+						<tr>
+						<td>{{ l10n['organization'] }}:</td>
+						<td>{{ locale == 'ru' ? book.organization.ru : book.organization.en }}</td>
+						</tr>
+					<tr>
+						<td>{{ l10n['category'] }}:</td>
+						<td>{{ locale == 'ru' ? book.category.ru : book.category.en }}</td>
+					</tr>
+					<tr>
+						<td>{{ l10n['subject1'] }}:</td>
+						<td>{{ locale == 'ru' ? book.subject1.ru : book.subject1.en }}</td>
+					</tr>
+					{% if book.subject2 %}
+						<tr>
+							<td>{{ l10n['subject2'] }}:</td>
+							<td>{{ locale == 'ru' ? book.subject2.ru : book.subject2.en }}</td>
+						</tr>
+					{% endif %}
+					<tr>
+						<td>{{ l10n['doctype'] }}:</td>
+						<td>{{ locale == 'ru' ? book.doctype.ru : book.doctype.en }}</td>
+					</tr>
+					<tr>
+						<td>{{ l10n['country'] }}:</td>
+						<td>{{ locale == 'ru' ? book.country.ru : book.country.en }}</td>
+					</tr>
+					<tr>
+						<td>{{ l10n['lang'] }}:</td>
+						<td>{{ locale == 'ru' ? book.lang.ru : book.lang.en }}</td>
+					</tr>
+					</tbody>
+					<tr>
+						<td>{{ l10n['type_of_file'] }}:</td>
+						<td><span>PDF, {{ book.file.size // 1024 }} Кб</span></td>
+					</tr>						
+				</table>
+				<div class="resource__controls">
+					<a class="resource__read-button" href="/{{ locale }}/reader/{{ book.id }}" role="button">{{ l10n['read'] }}</a>
+					&nbsp;
+					<a class="resource__read-button" href="/files/{{ book.file.id }}" role="button">{{ l10n['download'] }}</a>
+				</div>
+			</section>
+			<section class="resource__annotation">
+				<h2>{{ l10n['annotation'] }}</h2>
+				{{ locale == 'ru' ? book.annotation : book.annotation_en ? book.annotation_en : book.annotation }}
+			</section>
+			</div>
+		</section>	
+	</div>
+</section>
+{% endblock %}

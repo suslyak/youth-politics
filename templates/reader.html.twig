@@ -1,0 +1,112 @@
+{% extends "base.html.twig" %}
+
+{% block head %}
+<style>
+	html {
+		position: relative;
+		min-height: 100%;
+	}
+	body, h1, h2 {
+		border: 0;
+		margin: 0;
+		padding: 0;
+		
+	}
+	header,
+	#content {
+		padding: 10px;
+	}
+	#pdfviewer {
+		position: absolute;
+		border: 0;
+		margin: 0;
+		padding: 0;
+		height: 100vh;
+	}
+	.o-pdf-viewer {
+		position: relative;
+		width: 100%;
+		height: 100vh;
+	}
+</style>
+<script>
+	function fixViewerPosition ()
+	{
+		var pdfviewer  = document.getElementById('pdfviewer');
+		if (!pdfviewer) return;
+		var htmlHeight = window.innerHeight;
+		var bodyWidth  = document.body.clientWidth;
+		var bodyHeight = document.body.clientHeight;
+		var topPosition = pdfviewer.parentNode.offsetTop;
+		pdfviewer.setAttribute('height', bodyHeight  + topPosition);
+		pdfviewer.setAttribute('width', bodyWidth);
+	}
+	window.addEventListener('resize', fixViewerPosition);
+</script>
+{% endblock %}
+
+{% block header %}
+<section class="main-screen">
+	<div class="main-screen__wrapper">
+	  <div class="page-header">        
+		<a class="logo" href="/">
+		  <img
+		  style="width: 90px; height: 127px;"
+		  src="/img/logo_minobr@1x.png"
+		  srcset="/img/logo_minobr@1x.png 1x, /img/logo_minobr@2x.png 2x"
+		  alt="лого Минобрнауки России"
+		  width="90"
+		  height="127">
+		</a>
+		<a class="logo" href="/">
+		  <!--1x 90px, 2x 180-->
+		  <img
+		  src="/img/logo_mirea@1x.png"
+		  srcset="/img/logo_mirea@1x.png 1x, /img/logo_mirea@2x.png 2x"
+		  alt="лого РТУ МИРЭА"
+		  width="90"
+		  height="115">
+		</a>
+		<h1>
+			{{ l10n['index_title'] }}
+		</h1>
+		<div class="page-header__menu">
+			<ul class="page-header__menu-list">
+				<li><a href="#">{{ l10n['top_menu_link-news'] }}</a><button type="button" class="page-header__menu-colse-button"></button></li>
+				<li><a href="#">{{ l10n['top_menu_link-latest'] }}</a></li>
+				<li><a href="#">{{ l10n['top_menu_link-collections'] }}</a></li>
+				<li><a href="#">{{ l10n['top_menu_link-popular'] }}</a></li>   
+			</ul>
+			<ul class="page-header__submenu-list">
+				<li><a href="#">{{ l10n['top_menu_link-about'] }}</a></li>
+				<li><a href="#">{{ l10n['top_menu_link-statistics'] }}</a></li>
+				<li><a href="#">{{ l10n['top_menu_link-help'] }}</a></li>
+				<li class="page-header__mobile-menu-only-item">
+					<a href="/ru" class="page-header__locale-switch-link">Рус</a>
+					&nbsp;/
+					<a href="/en" class="page-header__locale-switch-link">Eng</a>
+				</li> 
+			</ul>
+		</div>
+		<button class="menu-toggle" type="button" aria-label="Переключатель отображения меню" aria-pressed="false">              
+		</button>
+		<div class="page-header__right-menu">
+		  <ul class="page-header__right-menu-list">
+			<li><a href="/ru" class="page-header__locale-switch-link">Рус</a></li>
+			<li>/&nbsp;<a href="/en" class="page-header__locale-switch-link">Eng</a></li>
+		  </ul>
+		</div>
+	  </div>
+	</div>
+	<div class="page-header__blackout"></div>
+</section>
+{% endblock %}
+
+{% block content %}
+<div class="o-pdf-viewer">
+	<iframe id="pdfviewer" src="/pdfjs/web/viewer.html?file={{ file }}#pagemode=none" allowfullscreen="allowfullscreen"></iframe>
+	<script>fixViewerPosition();</script>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

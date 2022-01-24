@@ -65,11 +65,11 @@ const SearchLine = ({advancedSearch = true}) => {
         }
         return `{"${filterName}":${queries[filterName]}}`});
 
-      return window.location.href = `${!!locale.LOCALE ? `/${locale.LOCALE}` : ``}/search.html?entity=Book&filter=[${filters.filter(x => !!x).join(',')}]`
+      return window.location.href = `${!!locale.LOCALE ? `/${locale.LOCALE}` : ``}/search?entity=Book&filter=[${filters.filter(x => !!x).join(',')}]`
     }
-    return window.location.href = `${!!locale.LOCALE ? `/${locale.LOCALE}` : ``}/search.html?entity=Book&filter=[{"name,title,title_ru,authors,year":{"$match":"${values.query}"}}]`
+    return window.location.href = `${!!locale.LOCALE ? `/${locale.LOCALE}` : ``}/search?entity=Book&filter=[{"name,title,title_ru,authors,year":{"$match":"${values.query}"}}]`
   }
-  console.log(locale);
+
   return (
       <Form
           onSubmit={values=> onSubmit(values)}

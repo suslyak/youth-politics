@@ -1,0 +1,174 @@
+{% extends "base.html.twig" %}
+
+{% block header %}
+<section class="main-screen main-screen--short">
+	<div class="main-screen__wrapper">
+	  <div class="page-header">        
+		<a class="logo" href="/">
+		  <img
+		  style="width: 90px; height: 127px;"
+		  src="/img/logo_minobr@1x.png"
+		  srcset="/img/logo_minobr@1x.png 1x, /img/logo_minobr@2x.png 2x"
+		  alt="лого Минобрнауки России"
+		  width="90"
+		  height="127">
+		</a>
+		<a class="logo" href="/">
+		  <!--1x 90px, 2x 180-->
+		  <img
+		  src="/img/logo_mirea@1x.png"
+		  srcset="/img/logo_mirea@1x.png 1x, /img/logo_mirea@2x.png 2x"
+		  alt="лого РТУ МИРЭА"
+		  width="90"
+		  height="115">
+		</a>
+		<h1>
+			{{ l10n['index_title'] }}
+		</h1>
+		<div class="page-header__menu">
+			<ul class="page-header__menu-list">
+				<li><a href="#">{{ l10n['top_menu_link-news'] }}</a><button type="button" class="page-header__menu-colse-button"></button></li>
+				<li><a href="#">{{ l10n['top_menu_link-latest'] }}</a></li>
+				<li><a href="#">{{ l10n['top_menu_link-collections'] }}</a></li>
+				<li><a href="#">{{ l10n['top_menu_link-popular'] }}</a></li>   
+			</ul>
+			<ul class="page-header__submenu-list">
+				<li><a href="#">{{ l10n['top_menu_link-about'] }}</a></li>
+				<li><a href="#">{{ l10n['top_menu_link-statistics'] }}</a></li>
+				<li><a href="#">{{ l10n['top_menu_link-help'] }}</a></li>
+				<li class="page-header__mobile-menu-only-item">
+					<a href="/ru" class="page-header__locale-switch-link">Рус</a>
+					&nbsp;/
+					<a href="/en" class="page-header__locale-switch-link">Eng</a>
+				</li> 
+			</ul>
+		</div>
+		<button class="menu-toggle" type="button" aria-label="Переключатель отображения меню" aria-pressed="false">              
+		</button>
+		<div class="page-header__right-menu">
+		  <ul class="page-header__right-menu-list">
+			<li><a href="/ru" class="page-header__locale-switch-link">Рус</a></li>
+			<li>/&nbsp;<a href="/en" class="page-header__locale-switch-link">Eng</a></li>
+		  </ul>
+		</div>
+	  </div>
+	</div>
+	<div class="page-header__blackout"></div>
+  </section>
+{% endblock %}
+
+{% block content %}
+<section class="main main--sky-color-bg">
+	<div  class="main__wrapper">
+		<div id="root" class="main__search-container">
+			<section id="search" class="main__search">
+			<form action="" class="main__search-form">
+				<div class="main__search-form-fields">
+				<input id="search" type="text" placeholder=""/>
+				<label class="visually-hidden" for="search">{{ l10n['search_btn'] }}</label>
+				<button type="submit">{{ l10n['search_btn'] }}</button>
+				</div>
+			</form>
+			</section>
+			<section class="results">
+				<ul class="results__list">
+				<li class="resource-card">
+						<picture>                        
+							<source srcset="/img/resource-picture@1x.webp 1x, /img/resource-picture@2x.webp 2x" type="image/webp">
+							<source srcset="/img/resource-picture@1x.jpg 1x, /img/resource-picture@2x.jpg 2x" type="image/jpeg">
+							<img class="resource-card_resource-picture" src="/img/resource-picture@1x.jpg" srcset="/img/resource-picture@1x.jpg 1x, /img/resource-picture@2x.jpg 2x" alt="обложка ресурса">
+						</picture>
+						<article class="resource-card__info">
+							<header>
+								<a href="#">
+									<h2>
+										...
+									</h2>
+								</a>
+							</header>
+							<section class="resource-card__meta">
+								<table>
+									<tr>
+										<td>
+											Авторы:
+										</td>
+										<td>
+											...
+									</tr>
+									<tr>
+										<td>
+											Организация:
+										</td>
+										<td>
+											...
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Коллекция:
+										</td>
+										<td>
+											...
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Тематика:
+										</td>
+										<td>
+											...
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Тип:
+										</td>
+										<td>
+											...
+										</td>
+									</tr>
+								</table>
+								<footer>
+									...
+								</footer>
+							</section>
+						</article>
+				</li> 
+				</ul>
+			</section>
+		</div>
+	</div>
+</section>
+<!--
+<h2>{{ l10n['found'] }}: {{ books | length }}</h2>
+{% if books|length > 0 %}
+<div class="found-books">
+	{% for book in books %}
+	<div class="found-book">
+		<a href="/{{ locale }}/resource/{{ book.id }}"><img src="/thumbs/{{ book.file.thumb }}" width="100" /></a>
+		<br />
+		<a href="/{{ locale }}/resource/{{ book.id }}">{{ book.title }}</a>
+		<br />
+		<b>{{ l10n['authors'] }}:</b> {{ book.authors }}
+		<br />
+		<b>{{ l10n['year'] }}:</b> {{ book.year }}
+		<br />
+		<b>{{ l10n['category'] }}:</b> {{ locale == 'ru' ? book.category.ru : book.category.en }}
+		<br />
+		<b>{{ l10n['organization'] }}:</b> {{ locale == 'ru' ? book.organization.ru : book.organization.en }}
+		<br />
+		<b>{{ l10n['lang'] }}:</b> {{ locale == 'ru' ? book.lang.ru : book.lang.en }}
+		<br />
+		<b>{{ l10n['country'] }}:</b> {{ locale == 'ru' ? book.country.ru : book.country.en }}
+		<br />
+		<b>{{ l10n['doctype'] }}:</b> {{ locale == 'ru' ? book.doctype.ru : book.doctype.en }}
+		<br />
+		<b>{{ l10n['subject1'] }}:</b> {{ locale == 'ru' ? book.subject1.ru : book.subject1.en }}
+		<br />
+		<b>{{ l10n['subject2'] }}:</b> {{ locale == 'ru' ? book.subject2.ru : book.subject2.en }}
+	</div>
+	{% endfor %}
+</div>
+{% endif %}
+-->
+{% endblock %}

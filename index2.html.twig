@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{{ l10n['index_title'] }}</title>
+	 <link rel="stylesheet" href="./css/main4.css">
+</head>
+<body>
+	<section class="main-container">
+		<section class="main-screen main-screen--heigh">
+			<div class="main-screen__wrapper">
+				<header class="page-header">        
+					<a class="logo" href="/">
+						<img
+						style="width: 90px; height: 127px;"
+						src="img/logo_minobr@1x.png"
+						srcset="img/logo_minobr@1x.png 1x, img/logo_minobr@2x.png 2x"
+						alt="лого Минобрнауки России"
+						width="90"
+						height="127">
+					</a>
+					<a class="logo" href="/">
+						<!--1x 90px, 2x 180-->
+						<img
+						src="img/logo_mirea@1x.png"
+						srcset="img/logo_mirea@1x.png 1x, img/logo_mirea@2x.png 2x"
+						alt="лого РТУ МИРЭА"
+						width="90"
+						height="115">
+					</a>
+					<h1>
+						{{ l10n['index_title'] }}
+					</h1>
+					<div class="page-header__menu">
+						<ul class="page-header__menu-list">
+						<li><a href="#">{{ l10n['top_menu_link-news'] }}</a></li>
+						<li><a href="#">{{ l10n['top_menu_link-latest'] }}</a></li>
+						<li><a href="#">{{ l10n['top_menu_link-collections'] }}</a></li>
+						<li><a href="#">{{ l10n['top_menu_link-popular'] }}</a></li>   
+						</ul>
+						<ul class="page-header__submenu-list">
+						<li><a href="#">{{ l10n['top_menu_link-about'] }}</a></li>
+						<li><a href="#">{{ l10n['top_menu_link-statistics'] }}</a></li>
+						<li><a href="#">{{ l10n['top_menu_link-help'] }}</a></li>
+						</ul>
+					</div>
+					<button class="menu-toggle" type="button" aria-label="Переключатель отображения меню" aria-pressed="false">              
+					</button>
+					<div class="page-header__right-menu">
+						<ul class="page-header__right-menu-list">
+							<li><a href="/">Рус</a></li>
+							<li>/ <a href="/en/">Eng</a></li>
+						</ul>
+					</div>
+				</header>
+			</div>
+		</section>
+		<section class="main">
+			<div class="main__wrapper">
+				<section id="root" class="main__search">
+					<form action="" class="main__search-form">
+					  <div class="main__search-form-fields">
+						<input id="search" type="text" placeholder=""/>
+						<label class="visually-hidden" for="search">{{ l10n['search_btn'] }}</label>
+						<button type="submit">{{ l10n['search_btn'] }}</button>
+					  </div>
+					</form>
+				</section>
+			</div>
+			<section class="main__info">
+				<section class="main__news">
+					<h2>{{ l10n['last_novels'] }}</h2>
+					<ul class="main__news-list">
+						{% for novel in novels %}
+							<li class="main__news-list-item">
+								<span>3 декабря</span>
+								<h3>
+									{{ novel.title | raw }}
+								</h3>
+									{{ novel.body | raw }}
+								<a href="/{{ locale }}/novel/{{ novel.slug }}">{{ l10n['read_link'] }}</a>
+								</p>
+							</li>
+						{% endfor %}
+					</ul>
+				</section>
+				<section class="main__fresh-arrivals">
+					<h2>{{ l10n['new-books'] }}</h2>
+					<ul class="main__fresh-arrivals-list">
+						{% for book in books %}
+							<li class="main__fresh-arrivals-list-item">
+								<a class="main__fresh-arrival-picture" href="/{{ locale }}/resource/{{ book.id }}">
+									<img src="/thumbs/{{ book.file.thumb }}" width="100" />
+								</a>
+								<p>
+								<a href="/{{ locale }}/resource/{{ book.id }}">{{ book.title }}</a>
+									{{ book.year }}, {{ book.pages }}
+								</p>
+							</li>
+						{% endfor %}
+					</ul> 
+				  </section>
+				  <section class="main__collections">
+					<h2>Коллекции</h2>
+					<ul class="main__collections-list">
+					  <li class="main__collections-list-item">
+						<h3>Страны</h3>
+						<ul>
+						  <li>Азербайджанская Республика  - 27</li>
+						  <li>Республика Армения - 18</li>
+						  <li>Республика Беларусь - 24</li>
+						  <li>Республика Казахстан - 16</li>
+						  <li>Киргизская Республика - 6</li>
+						  <a href="#">Все страны</a>
+						</ul>
+					  </li>
+					  <li class="main__collections-list-item">
+						<h3>Международные организации</h3>
+						<ul>
+						  <li>Всемирная организация скаутского движения - 2</li>
+						  <li>Евразийский банк развития - 14</li>
+						  <li>Европейский союз - 52</li>
+						  <li>Международная Федерация Обществ Красного Креста и Красного Полумесяца - 21</li>
+						  <li>Организация Объединенных Наций - 87</li>
+						  <a href="#">Все Международные организации</a>
+						</ul>
+					  </li>
+					</ul> 
+				  </section>
+			</section>
+		</section>
+	</section>
+	<footer>
+		<div>&copy; {{ l10n['copyright'] }}</div>
+	</footer>
+</body>
+</html>

@@ -20,7 +20,7 @@ const {locale} = useSelector((state) => state.LOCALE);
             <a href="/resource.html">
                 <img
                     className="resource-card_resource-picture"
-                    src={`thumbs/${data.file.thumb || `zaglushka_02.jpg`}`}
+                    src={`/thumbs/${data.file.thumb || `zaglushka_02.jpg`}`}
                     alt="обложка ресурса"
                 />
             </a>
@@ -28,8 +28,8 @@ const {locale} = useSelector((state) => state.LOCALE);
         </div>
         <article className="resource-card__info">
             <header className="resource-card__header">
-            <a href="/resource.html">
-                <h2>{data.title ? `${data.title[0].toUpperCase()}${data.title.toLowerCase().slice(1)}` : ``}</h2>
+            <a href={`/${locale.LOCALE}/resource/${data.id}`}>
+                <h2>{data.title ? data.title : ``}</h2>
             </a>
             </header>
             <section className="resource-card__meta">

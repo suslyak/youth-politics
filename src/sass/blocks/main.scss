@@ -11,15 +11,19 @@
     &--no-padding {
       padding: 0;
     }
+
+    &--sky-color-bg {
+      background-color: $color-light-cyan;
+    }
 }
   
 .main__wrapper {
   width: 100%;
-  max-width: 1300px;
+  max-width: 1340px;
   margin: 0 auto;
 
   @include viewport--lg {
-    max-width: 800px;
+    max-width: 1200px;
   }
 
   @include viewport--sm {
@@ -33,8 +37,12 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
 
+  @include viewport--md {
+    top: 27vw;
+  }
+}
+    
 .main__search-form,
 .main__advanced-search-form {
   width: 100%;
@@ -66,7 +74,7 @@
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    background-color: transparent;
+    background-color: $color-white;
     color: $color-default-black;
     border: 2px solid $color-black;
     border-left: none;
@@ -84,21 +92,33 @@
     &:hover {
       background-color: $color-regent-st-blue;
     }
+
+    @include viewport--sm {
+      font-size: 20px;
+      padding: 0 20px;
+    }
   }
 }
 
 .main__search-form-fields {
   display: flex;
   width: 100%;
-  max-width: 1080px;
   flex-direction: row;
   margin: 0 auto;
+  padding: 0 20px;
+
+  @include viewport--md {
+    padding: 0;
+  }
 }
 
 .main__info {
   width: 100%;
-  margin-top: 57px;
+  margin-top: 34vw;
+  margin-bottom: 100px;
+  padding: 20px;
   display: flex;
+  background-color: $color-white;
 
   a {
     color: $color-astral;
@@ -106,16 +126,23 @@
 
   @include viewport--lg {
     flex-wrap: wrap;
+    margin-bottom: 80px;
+  }
+
+  @include viewport--md {
+    flex-wrap: wrap;
+    margin-bottom: 60px;
   }
 
   @include viewport--sm {
+    margin-bottom: 0;
     flex-direction: column;
   }
 
 }
 
 .main__news {
-  width: calc((100% - 60px) / 4);
+  width: calc((100% - 20px) / 2);
   margin-right: 20px;
   display: flex;
   flex-direction: column;
@@ -130,7 +157,7 @@
     margin-bottom: 60px;
   }
 
-  @include viewport--sm {
+  @include viewport--md {
     width: 100%;
     margin-right: 0;
   }
@@ -148,6 +175,10 @@
   flex-wrap: wrap;
 
   @include clear-ul;
+}
+
+.main__fresh-arrivals-list {
+  flex-direction: row;
 }
 
 .main__news-list-item {
@@ -181,8 +212,7 @@
 }
 
 .main__fresh-arrivals {
-  width: calc((100% - 60px) / 4);
-  margin-right: 20px;
+  width: calc((100% - 20px) / 2);
   display: flex;
   flex-direction: column;
 
@@ -197,6 +227,10 @@
     margin-bottom: 60px;
   }
 
+  @include viewport--md {
+    width: 100%;
+  }
+
   @include viewport--sm {
     width: 100%;
   }
@@ -204,10 +238,20 @@
 
 .main__fresh-arrivals-list-item,
 .main__populars-list-item {
-  margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    width: calc((100% - 20px) / 2);
+    margin-right: 20px;
 
   &:last-child {
     margin-bottom: 0;
+    margin-right: 0;
+  }
+
+  &:nth-child(2n+2) {
+    margin-right: 0;
   }
 
   a {
@@ -217,7 +261,23 @@
   }
 
   p {
+    width: calc((100% - 20px) / 2);
     margin: 0;
+  }
+
+  @include viewport--sm {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+.main__fresh-arrival-picture {
+  width: calc((100% - 20px) / 2);
+  margin-right: 20px;
+  margin-bottom: 1em;
+
+  img {
+    width: 100%;
   }
 }
 
@@ -295,12 +355,23 @@
 .main__search-container {
   width: 100%;
   padding: 35px 110px;
-  margin-bottom: -150px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  background-color: $color-alice-blue;
+  background-color: $color-light-cyan;
+
+  & .main__search-form-fields {
+    padding: 0;
+  }
+
+  @include viewport--md {
+    padding: 35px 0;
+  }
+
+  @include viewport--md {
+    padding: 20px 0;
+  }
 }
 
 .main__advanced-button {
@@ -311,7 +382,7 @@
   align-items: center;
   justify-content: flex-start;
   font-size: 12px;
-  background-color: transparent;
+  background-color: $color-white;
   color: $color-default-black;
   border-top: 2px solid $color-black;
   border-left: 2px solid $color-black;
@@ -345,6 +416,7 @@
   flex-direction: column;
   border: 2px solid $color-black;
   padding: 20px;
+  background-color: $color-white;
 
   &--no-padding {
     padding: 0;
@@ -352,6 +424,10 @@
 
   &--no-border {
     border: none;
+  }
+
+  &--no-background {
+    background-color: transparent;
   }
 }
 
@@ -405,6 +481,10 @@
     input {
       max-width: calc(100% - 135px);
     }
+
+    @include viewport--lg {
+      width: calc((100% - 20px) / 2);
+    }  
   }
 
   &--column {
@@ -474,6 +554,61 @@
 
 .main__advanced-search-select-field {
   width: calc(100% - 135px);
+}
+
+.main__partners {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: $color-provincial-pink;
+
+}
+
+.main__partners-list {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+
+  @include clear-ul;
+
+  @include viewport--md {
+    justify-content: space-around;
+  }
+}
+
+.main__partner {
+  width: calc((100% - 100px) / 6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  @include viewport--md {
+    width: calc((100% - 60px) / 4);
+
+    &:nth-child(3n+3) {
+      margin-right: 0;
+    }
+  }
+
+  @include viewport--sm {
+    width: calc((100% - 20px) / 2);
+
+    &:nth-child(3n+3) {
+      margin-right: inherit;
+    }
+
+    &:nth-child(2n+2) {
+      margin-right: 0;
+    }
+  }
 }
 
   
