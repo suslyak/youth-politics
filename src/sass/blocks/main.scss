@@ -33,16 +33,22 @@
 
 .main__search {
   width: 100%;
+  height: 52px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: flex-start;
 
   @include viewport--md {
     top: 27vw;
   }
 }
-    
+
+.main__search-form {
+  height: 52px;
+}
+
 .main__search-form,
 .main__advanced-search-form {
   width: 100%;
@@ -102,13 +108,23 @@
 
 .main__search-form-fields {
   display: flex;
+  flex-direction: column;
   width: 100%;
-  flex-direction: row;
   margin: 0 auto;
-  padding: 0 20px;
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 20px;
+  }
 
   @include viewport--md {
     padding: 0;
+  }
+}
+
+.main__search-form {
+  & .main__search-form-fields {
+    flex-direction: row;
   }
 }
 
@@ -142,7 +158,7 @@
 }
 
 .main__news {
-  width: calc((100% - 20px) / 2);
+  width: calc((100% - 60px) / 4);
   margin-right: 20px;
   display: flex;
   flex-direction: column;
@@ -173,12 +189,9 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  line-height: 1.6em;
 
   @include clear-ul;
-}
-
-.main__fresh-arrivals-list {
-  flex-direction: row;
 }
 
 .main__news-list-item {
@@ -201,7 +214,7 @@
   }
 
   h3 {
-    margin: 0;
+    margin: 0 0 10px 0;
     font-size: 18px;
   }
 
@@ -212,9 +225,10 @@
 }
 
 .main__fresh-arrivals {
-  width: calc((100% - 20px) / 2);
+  width: calc((100% - 60px) / 4);
   display: flex;
   flex-direction: column;
+  margin-right: 20px;
 
   h2 {
     font-size: 24px;
@@ -242,7 +256,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 25px;
-    width: calc((100% - 20px) / 2);
+    width: 100%;
     margin-right: 20px;
 
   &:last-child {
@@ -261,7 +275,7 @@
   }
 
   p {
-    width: calc((100% - 20px) / 2);
+    width: 100%;
     margin: 0;
   }
 
@@ -272,7 +286,7 @@
 }
 
 .main__fresh-arrival-picture {
-  width: calc((100% - 20px) / 2);
+  width: calc(30% - 20px);
   margin-right: 20px;
   margin-bottom: 1em;
 
@@ -311,7 +325,7 @@
   }
 
   h3 {
-    margin: 0;
+    margin: 0 0 30px;
     font-size: 18px;
   }
 
@@ -329,6 +343,14 @@
     flex-wrap: wrap;
 
     @include clear-ul;
+
+    li {
+      margin-bottom: 1em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 }
 
@@ -463,6 +485,10 @@
     }
   }
 
+  & > input {
+    height: 50px;
+  }
+
   &--short {
     width: calc((100% - 40px) / 3);
     margin-right: 20px;
@@ -484,7 +510,21 @@
 
     @include viewport--lg {
       width: calc((100% - 20px) / 2);
-    }  
+    }
+
+    @include viewport--md {      
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      label {
+        margin-bottom: 10px;
+      }
+    }
   }
 
   &--column {
@@ -539,6 +579,10 @@
       width: 100%;
       max-width: inherit;
     }
+
+    @include viewport--md {
+      width: 100%;
+    }
   }
 }
 
@@ -549,6 +593,17 @@
 
   &:last-child {
     margin-bottom: 0;
+  }
+
+  @include viewport--md {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+
+    label {
+      margin-right: 10px;
+    }
   }
 }
 
@@ -581,8 +636,8 @@
   width: calc((100% - 100px) / 6);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   margin-right: 20px;
   margin-bottom: 20px;
 
@@ -608,6 +663,44 @@
     &:nth-child(2n+2) {
       margin-right: 0;
     }
+  }
+}
+
+.main__partner-logo-container {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main__search-line-advanced-search-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  .main__advanced-search {
+    flex-direction: row;
+  }
+  
+  & .main__search-form-fields {
+    width: calc((100% - 20px) / 2);
+    margin: 0 20px 0 0;
+
+    &:nth-child(2n+2) {
+      margin-right: 0;
+    }
+  }
+  & .main__advanced-search-fields-row {
+    margin-top: 27px;
+
+    @include viewport--sm {
+      margin-top: 0;
+    }
+  }
+
+  button[type="submit"] {
+    margin: 20px auto 0;
   }
 }
 

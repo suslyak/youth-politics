@@ -1,7 +1,7 @@
 import axios from "axios";
 import {HttpCode} from '../const';
 
-const BACKEND_URL = `https://youthlib.mirea.ru/`;
+const BACKEND_URL = `https://dev.youthlib.mirea.ru/`;
 const REQUEST_TIMEOUT = 60000;
 
 export const createAPI = (onUnauthorized, onError) => {

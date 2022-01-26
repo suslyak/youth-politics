@@ -57,7 +57,7 @@ const Results = () => {
                 <ResultsList/>
                 {/*<FasetsForm data={searchResults} filters={filters} onSubmit={onFiltersSubmit}/>*/}
                 <div className="results__faset-filters">
-                    <AdvancedSearchForm/>
+                    <AdvancedSearchForm reloadPage={false}/>
                 </div>
             </section>
             

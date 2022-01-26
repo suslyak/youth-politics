@@ -1,15 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {useHistory} from "react-router-dom";
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {Form, Field} from 'react-final-form';
 import AdvancedSearchFields from '../AdvancedSearch/AdvancedSearchFields.jsx';
 import AdvancedSearchFormField from '../fields/AdvancedSearchFormField/AdvancedSearchFormField';
+import AdvancedSearchForm from '../AdvancedSearch/AdvancedSearchForm';
 import TextField from '../fields/TextField/TextField.jsx';
+import SearchLineTextField from '../fields/TextField/SearchLineTextField';
 import NumberField from '../fields/NumberField/NumberField';
+import { changeQuery } from '../../store/action.js';
 import moment from 'moment';
 
 
-const SearchLine = ({advancedSearch = true}) => {
+const SearchLine = ({advancedSearch = true, defaultValue=''}) => {
   const [advanced, setAdvanced]  = useState(false);
   const [form, setForm]  = useState({query: '', author_query: ''});
 
@@ -23,6 +26,9 @@ const SearchLine = ({advancedSearch = true}) => {
     types} = useSelector((state) => state.DICT);
   
   const {locale} = useSelector((state) => state.LOCALE);
+  //const {query} = useSelector((state) => state.SEARCH);
+  
+  const dispatch = useDispatch();
 
   const optionsDict = {
     categories,
@@ -67,10 +73,11 @@ const SearchLine = ({advancedSearch = true}) => {
 
       return window.location.href = `${!!locale.LOCALE ? `/${locale.LOCALE}` : ``}/search?entity=Book&filter=[${filters.filter(x => !!x).join(',')}]`
     }
-    return window.location.href = `${!!locale.LOCALE ? `/${locale.LOCALE}` : ``}/search?entity=Book&filter=[{"name,title,title_ru,authors,year":{"$match":"${values.query}"}}]`
-  }
 
-  return (
+    return window.location.href = `${!!locale.LOCALE ? `/${locale.LOCALE}` : ``}/search?entity=Book&filter=[{"name,title,title_ru,authors,year":{"$match":"${values.query ? values.query : defaultValue}"}}]`
+  }
+  console.log(defaultValue);
+  return (<>
       <Form
           onSubmit={values=> onSubmit(values)}
           render={({handleSubmit, pristine, form, submitting, values}) => (
@@ -86,21 +93,33 @@ const SearchLine = ({advancedSearch = true}) => {
                       ? !!locale.SIMPLE_SEARCH ? locale.SIMPLE_SEARCH : `Простой поиск`
                       : !!locale.ADVANCED_SEARCH ? locale.ADVANCED_SEARCH : `Расширенныйпоиск`}
             </button>}
-            {!advanced && <><Field
-                    component={TextField}
-                    key={'query'}
-                    name={'query'}
-                    id={'query'}
-                    isRequired={true}
-                    /><label className="visually-hidden" htmlFor="query">{!!locale.SEARCH ? `${locale.SEARCH}` : `Поиск`}</label></>}
-            {advanced && <>
+              <>
+                <Field
+                  component={SearchLineTextField}
+                  key={'query'}
+                  name={'query'}
+                  id={'query'}
+                  isRequired={true}
+                  defaultValue={defaultValue}
+                />
+                <label className="visually-hidden" htmlFor="query">{!!locale.SEARCH ? `${locale.SEARCH}` : `Поиск`}</label>
+              </>
+            {/*advanced && <>
               <div className="main__advanced-search">
                 <AdvancedSearchFields optionsDict={optionsDict} values={values} labelsUpon={false}/>
               </div>
-              </>}
+            </>*/}
             <button type="submit">{!!locale.SEARCH ? `${locale.SEARCH}` : `Найти`}</button>
         </div>
     </form>)}/>
+    {advanced && <div className="main__search-line-advanced-search-container">
+        <AdvancedSearchForm extraStyles={{
+          backgroundColor: '#ffffff',
+          padding: 20,
+          border: '2px solid black',
+          borderTop: 'none'}}/>
+    </div>}
+    </>
   );
 };
 

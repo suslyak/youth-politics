@@ -1,4 +1,6 @@
 import React from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import { changeQuery } from '../../../store/action';
 
 const customStyles = {
     input: (provided) => ({
@@ -37,14 +39,23 @@ const customStyles = {
     })
 };
 
-const TextField = ({label, placeholder, input, name, id=''}) => {
+const TextField = ({touched, label, placeholder, input, name, id=''}) => {
 
+    const {query} = useSelector((state) => state.SEARCH);
+    const dispatch = useDispatch();
+
+    const onChange = (evt) => {
+        dispatch(changeQuery(evt.target.value));
+    }
     return (<input {...input}
                     id={id}
                     type="text"
                     styles={customStyles}
-                    value={input.value}
+                    value={!!input.value ? input.value : query}
                     placeholder={''}
+                    onChange = {(evt) => {
+                        input.onChange(evt);
+                        onChange(evt)}}
                     />
     );
 };

@@ -35,6 +35,12 @@ const SwitchMyRoutes = ({locale='ru', match}) => {
         <Route exact path={`/${locale}`}>
             <SearchLine />
         </Route>
+        <Route exact path={`/${locale}/about.html`}>
+            <SearchLine />
+        </Route>
+        <Route exact path={`/${locale}/help.html`}>
+            <SearchLine />
+        </Route>
         <Route path={`/${locale}/search`}>
             <Search />
         </Route>

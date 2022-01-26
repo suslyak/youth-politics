@@ -13,12 +13,15 @@ export const i18n = {
         ORGANIZATION_FIELD_LABEL: `Организация:`,
         LANG_FIELD_LABEL : `Язык:`,
         CATEGORY_FIELD_LABEL: `Рубрика:`,
-        DOCTYPE_FIELD_LABEL: 'Тип<br/>документа:',
+        DOCTYPE_FIELD_LABEL: 'Тип документа:',
+        DOCTYPE_RESOURCE_FIELD: 'Тип<br/>документа:',
         SUBJECT_FIELD_LABEL: `Тематика:`,
-        SUB_SUBJECT_FIELD_LABEL: 'Тематика<br/>(подуровни)',
+        SUB_SUBJECT_FIELD_LABEL: 'Тематика (подуровни)',
+        SUB_SUBJECT_RESOURCE_FIELD: 'Тематика<br/>(подуровни)',
         SELECT_PLACEHOLDER: `Выберите`,
         TOTAL_FOUND: `Найдено`,
-        SEARCHING: `Идёт поиск...`
+        SEARCHING: `Идёт поиск...`,
+        YEAR_RESOURSE_FIELD: `Год`
     },
     'en': {
         LOCALE: `en`,
@@ -33,11 +36,14 @@ export const i18n = {
         ORGANIZATION_FIELD_LABEL: `Organization:`,
         LANG_FIELD_LABEL : `Language:`,
         CATEGORY_FIELD_LABEL: `Category:`,
-        DOCTYPE_FIELD_LABEL: 'Document<br/>type',
-        SUBJECT_FIELD_LABEL: `Subject:`,
-        SUB_SUBJECT_FIELD_LABEL: 'Subject<br/>(sublevel)',
+        DOCTYPE_FIELD_LABEL: 'Document type:',
+        DOCTYPE_RESOURCE_FIELD: 'Document<br/>type:',
+        SUBJECT_FIELD_LABEL: `Topic:`,
+        SUB_SUBJECT_FIELD_LABEL: 'Topic(sublayer)',
+        SUB_SUBJECT_RESOURCE_FIELD: 'Тематика<br/>(подуровни)',
         SELECT_PLACEHOLDER: `Choose`,
         TOTAL_FOUND: `Total found`,
-        SEARCHING: `Searching...`
+        SEARCHING: `Searching...`,
+        YEAR_RESOURSE_FIELD: `Year`
     }
 }

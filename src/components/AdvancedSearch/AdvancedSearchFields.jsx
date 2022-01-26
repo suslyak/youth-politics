@@ -10,6 +10,7 @@ const AdvancedSearchFields = ({optionsDict, values, labelsUpon=true}) => {
   const {locale} = useSelector((state) => state.LOCALE);
 
   return (<>
+          <div className="main__search-form-fields">
             <div className={`main__advanced-search-fields ${labelsUpon ? `main__advanced-search-fields--column` : ``}`}>
               <label htmlFor="author_query">{!!locale.AUTHOR_FIELD_LABEL ? `${locale.AUTHOR_FIELD_LABEL}` : `Авторы:`}</label>
               <Field
@@ -68,7 +69,7 @@ const AdvancedSearchFields = ({optionsDict, values, labelsUpon=true}) => {
                   />
               </div>
             </div>
-
+            
             <div className={`main__advanced-search-fields ${labelsUpon ? `main__advanced-search-fields--column` : ``}`}>
               <label htmlFor="organization_query">{!!locale.ORGANIZATION_FIELD_LABEL ? `${locale.ORGANIZATION_FIELD_LABEL}` : `Организация:`}</label>
               <div className="main__advanced-search-select-field">
@@ -82,7 +83,9 @@ const AdvancedSearchFields = ({optionsDict, values, labelsUpon=true}) => {
                   />
               </div>
             </div>
+          </div>
 
+          <div className="main__search-form-fields">
             <div className={`main__advanced-search-fields ${labelsUpon ? `main__advanced-search-fields--column` : ``}`}>
               <label htmlFor="lang_query">{!!locale.LANG_FIELD_LABEL ? `${locale.LANG_FIELD_LABEL}` : `Язык:`}</label>
               <div className="main__advanced-search-select-field">
@@ -152,7 +155,8 @@ const AdvancedSearchFields = ({optionsDict, values, labelsUpon=true}) => {
                   />
               </div>
             </div>
-          </>
+          </div>
+        </>
   );
 };
 

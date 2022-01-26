@@ -6,7 +6,7 @@ import {Form} from 'react-final-form';
 import {fetchAuthorTitleResultsList} from '../../store/api-actions';
 import {changeIsResultsLoaded} from '../../store/action';
 
-const AdvancedSearchForm = ({children = []}) => {
+const AdvancedSearchForm = ({extraStyles={}, reloadPage=true, children = []}) => {
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -42,8 +42,8 @@ const AdvancedSearchForm = ({children = []}) => {
             'organization': values.organization_query && values.organization_query.length ? `{"$in":[${values.organization_query.map(x => x.value).join(',')}]}` : null,
             'lang': values.lang_query && values.lang_query.length ? `{"$in":[${values.lang_query.map(x => x.value).join(',')}]}` : null,
             'doctype': values.type_query && values.type_query.length ? `{"$in":[${values.type_query.map(x => x.value).join(',')}]}` : null,
-            'subject_1': values.subject_query && values.subject_query.length ? `{"$in":[${values.subject_query.map(x => x.value).join(',')}]}` : null,
-            'subject_2': values.subSubject_query && values.subSubject_query.length ? `{"$in":[${values.subSubject_query.map(x => x.value).join(',')}]}` : null,
+            'subject1': values.subject_query && values.subject_query.length ? `{"$in":[${values.subject_query.map(x => x.value).join(',')}]}` : null,
+            'subject2': values.subSubject_query && values.subSubject_query.length ? `{"$in":[${values.subSubject_query.map(x => x.value).join(',')}]}` : null,
           }
           
         const filters = Object.keys(queries).filter(x => !!queries[x]).map((filterName) => {
@@ -55,9 +55,13 @@ const AdvancedSearchForm = ({children = []}) => {
         const queryFilters = filters.filter(x => !!x).join(',');
 
         if (queryFilters) {
+          if (!reloadPage) {
             history.push(`${!!locale.LOCALE ? `/${locale.LOCALE}` : ``}/search?entity=Book&filter=[${queryFilters}]`);
             dispatch(changeIsResultsLoaded(false));
             dispatch(fetchAuthorTitleResultsList(`?entity=Book&filter=[${queryFilters}]`));
+          } else {
+            window.location.href = `${!!locale.LOCALE ? `/${locale.LOCALE}` : ``}/search?entity=Book&filter=[${queryFilters}]`
+          }
         }
     }
 
@@ -65,10 +69,13 @@ const AdvancedSearchForm = ({children = []}) => {
         <Form
             onSubmit={values=> onSubmit(values)}
             render={({handleSubmit, pristine, form, submitting, values}) => (
-                <form action="" className="main__advanced-search-form" onSubmit={handleSubmit}>
-                        <div className="main__advanced-search main__advanced-search--no-border main__advanced-search--no-padding main__advanced-search--no-background">
-                            <AdvancedSearchFields optionsDict={optionsDict} values={values}/>
-                            {children}
+                <form style = {extraStyles} action="" className="main__advanced-search-form" onSubmit={handleSubmit}>
+                        <div 
+                          
+                          className="main__advanced-search main__advanced-search--no-border main__advanced-search--no-padding main__advanced-search--no-background"
+                        >
+                          <AdvancedSearchFields optionsDict={optionsDict} values={values}/>
+                          {children}
                         </div>
                         <button type="submit">{!!locale.SEARCH ? `${locale.SEARCH}` : `Найти`}</button>
                 </form>)}/>

@@ -6,7 +6,7 @@ import AdvancedSearchForm from '../AdvancedSearch/AdvancedSearchForm';
 import AdvancedSearchFormFields from '../AdvancedSearch/AdvancedSearchFields';
 
 const SEARCH_RESULTS_PER_PAGE = 5;
-const SEARCH_RESULTS_PAGES_RANGE = 3;
+const SEARCH_RESULTS_PAGES_RANGE = 5;
 
 const ResultsList = () => {
     const {results, isResultsLoaded} = useSelector((state) => state.SEARCH);
@@ -17,6 +17,8 @@ const ResultsList = () => {
     const PagesCount = Math.ceil(results.length / SEARCH_RESULTS_PER_PAGE);
 
     const range = {start: (page.numberPage - 1) * SEARCH_RESULTS_PER_PAGE, end: PagesCount > 1 ? page.numberPage * SEARCH_RESULTS_PER_PAGE : results.length}
+
+    useEffect(() => setPage({numberPage: 1, direction: 0}), [results]);
 
     if (!isResultsLoaded) {
         return (
@@ -37,20 +39,34 @@ const ResultsList = () => {
         return pagesRange;
     }
 
+    const leftSidePage = PagesCount - page.numberPage < SEARCH_RESULTS_PAGES_RANGE ? page.numberPage - (SEARCH_RESULTS_PAGES_RANGE - (PagesCount - page.numberPage)) - 1 : page.numberPage - 1;
+
     return (<div className="results__container">
                 <div className="results__header">
                     <h3>{!!locale.TOTAL_FOUND ? `${locale.TOTAL_FOUND}` : `Найдено`}: {results.length}</h3>
                     {(PagesCount > 1) && <ul className="results__pages">
-                        {((page.numberPage !== 1) && (SEARCH_RESULTS_PAGES_RANGE < PagesCount)) && 
+                        {((page.numberPage > SEARCH_RESULTS_PAGES_RANGE - 1) && (PagesCount > SEARCH_RESULTS_PAGES_RANGE)) &&
+                            <li
+                                className={`results__page results__page--skip-to-first`}                         
+                                key={`pageKey1`}>
+                                <button
+                                    type="button"
+                                    aria-label={`Страница выдачи поиска 1`}
+                                    onClick={() => setPage({numberPage: 1, direction: 0})}
+                                >
+                                    1
+                                </button>
+                            </li>}
+                        {((page.numberPage !== 1) && (SEARCH_RESULTS_PAGES_RANGE < PagesCount) && leftSidePage > 0) && 
                             <li
                                 className={`results__page`}                         
                                 key={`pageKey${page.numberPage - 1}`}>
                                 <button
                                     type="button"
                                     aria-label={`Страница выдачи поиска ${PagesCount}`}
-                                    onClick={() => setPage({numberPage: PagesCount - page.numberPage < SEARCH_RESULTS_PAGES_RANGE ? page.numberPage - (SEARCH_RESULTS_PAGES_RANGE - (PagesCount - page.numberPage)) - 1 : page.numberPage - 1, direction: 1})}
+                                    onClick={() => setPage({numberPage: leftSidePage, direction: 1})}
                                 >
-                                    {PagesCount - page.numberPage < SEARCH_RESULTS_PAGES_RANGE ? page.numberPage - (SEARCH_RESULTS_PAGES_RANGE - (PagesCount - page.numberPage)) - 1 : page.numberPage - 1}
+                                    {leftSidePage}
                                 </button>
                             </li>}
                         {getPages().map((x, i) => (((x < PagesCount) && (x > 0)) &&
@@ -85,22 +101,34 @@ const ResultsList = () => {
                 <div className="results__header">
                     <h3>{!!locale.TOTAL_FOUND ? `${locale.TOTAL_FOUND}` : `Найдено`}: {results.length}</h3>
                     {(PagesCount > 1) && <ul className="results__pages">
-                        {((page.numberPage !== 1) && (SEARCH_RESULTS_PAGES_RANGE < PagesCount)) && 
+                        {((page.numberPage > SEARCH_RESULTS_PAGES_RANGE - 1) && (PagesCount > SEARCH_RESULTS_PAGES_RANGE)) &&
+                            <li
+                                className={`results__page results__page--skip-to-first`}                         
+                                key={`pageKey1`}>
+                                <button
+                                    type="button"
+                                    aria-label={`Страница выдачи поиска 1`}
+                                    onClick={() => setPage({numberPage: 1, direction: 0})}
+                                >
+                                    1
+                                </button>
+                            </li>}
+                        {((page.numberPage !== 1) && (SEARCH_RESULTS_PAGES_RANGE < PagesCount) && leftSidePage > 0) && 
                             <li
                                 className={`results__page`}                         
-                                key={`bottomPageKey${page.numberPage - 1}`}>
+                                key={`pageKey${page.numberPage - 1}`}>
                                 <button
                                     type="button"
                                     aria-label={`Страница выдачи поиска ${PagesCount}`}
-                                    onClick={() => setPage({numberPage: PagesCount - page.numberPage < SEARCH_RESULTS_PAGES_RANGE ? page.numberPage - (SEARCH_RESULTS_PAGES_RANGE - (PagesCount - page.numberPage)) - 1 : page.numberPage - 1, direction: 1})}
+                                    onClick={() => setPage({numberPage: leftSidePage, direction: 1})}
                                 >
-                                    {PagesCount - page.numberPage < SEARCH_RESULTS_PAGES_RANGE ? page.numberPage - (SEARCH_RESULTS_PAGES_RANGE - (PagesCount - page.numberPage)) - 1 : page.numberPage - 1}
+                                    {leftSidePage}
                                 </button>
                             </li>}
                         {getPages().map((x, i) => (((x < PagesCount) && (x > 0)) &&
                             <li
                                 className={`results__page ${ page.numberPage === x ? `results__page--selected` : ``}`}                         
-                                key={`bottomPageKey${x}`}>
+                                key={`pageKey${x}`}>
                                 <button
                                     type="button"
                                     aria-label={`Страница выдачи поиска ${x}`}
@@ -112,7 +140,7 @@ const ResultsList = () => {
                             ))}
                             {<li
                                 className={`results__page ${page.numberPage < PagesCount - SEARCH_RESULTS_PAGES_RANGE ? `results__page--skip-to-last` : ``}`}                         
-                                key={`bottomPageKey${PagesCount}`}>
+                                key={`pageKey${PagesCount}`}>
                                 <button
                                     type="button"
                                     aria-label={`Страница выдачи поиска ${PagesCount}`}

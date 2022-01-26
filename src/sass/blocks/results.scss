@@ -105,5 +105,16 @@
             bottom: 0
         }
     }
+
+    &--skip-to-first {
+        margin-right: calc(1em + 10px);
+
+        &::before {
+            content: '...';
+            position: absolute;
+            right: - 1em;
+            bottom: 0
+        }
+    }
 }
     

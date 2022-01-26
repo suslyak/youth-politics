@@ -57,15 +57,20 @@ const {locale} = useSelector((state) => state.LOCALE);
                 </tr>}
                 {!!data.subject_2 &&
                 <tr>
-                    <td>{!!locale.SUB_SUBJECT_FIELD_LABEL ? <span dangerouslySetInnerHTML={{__html: locale.SUB_SUBJECT_FIELD_LABEL}}></span> : <>Тематика<br/>(подуровни):</>}</td>
+                    <td>{!!locale.SUB_SUBJECT_RESOURCE_FIELD ? <span dangerouslySetInnerHTML={{__html: locale.SUB_SUBJECT_RESOURCE_FIELD}}></span> : <>Тематика<br/>(подуровни):</>}</td>
                     <td>{subSubjects.filter((x) => x.id === data.subject_2).map(x => x[locale.LOCALE])}</td>
+                </tr>}
+                {!!data.year &&
+                <tr>
+                    <td>{!!locale.YEAR_RESOURSE_FIELD ? `${locale.YEAR_RESOURSE_FIELD}` : `Год:`}</td>
+                    <td>{data.year}</td>
                 </tr>}
                 {!!data.doctype &&
                 <tr>
-                    <td>{!!locale.DOCTYPE_FIELD_LABEL ? <span dangerouslySetInnerHTML={{__html: locale.DOCTYPE_FIELD_LABEL}}></span> : `Тип документа:`}</td>
+                    <td>{!!locale.DOCTYPE_RESOURCE_FIELD ? <span dangerouslySetInnerHTML={{__html: locale.DOCTYPE_RESOURCE_FIELD}}></span> : `Тип документа:`}</td>
                     <td>{types.filter((x) => x.id === data.doctype).map(x => x[locale.LOCALE])}</td>
                 </tr>}
-                {!!data.doctype &&
+                {!!data.country &&
                 <tr>
                     <td>{!!locale.COUNTRY_FIELD_LABEL ? `${locale.COUNTRY_FIELD_LABEL}` : `Страна:`}</td>
                     <td>{countries.filter((x) => x.id === data.country).map(x => x[locale.LOCALE])}</td>

@@ -32,7 +32,21 @@ const persistConfig = {
   storage,
 }
 
-const {store, persistor} = getStoreAndPersistor();
+/*const api = createAPI(
+  () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)),
+  (error) => {
+    showSelfFadingRedToast(error);
+  });
+*/
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(
+      applyMiddleware(thunk.withExtraArgument(api))
+  )
+);
+
+//const {store, persistor} = getStoreAndPersistor();
 
 const body = document.querySelector('body');
 const headerElement = body.querySelector('.page-header');
@@ -136,7 +150,7 @@ document.addEventListener('keydown', (evt) => {
 
 ReactDOM.render(
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      {/*<PersistGate loading={null} persistor={persistor}>*/}
       <BrowserRouter history={browserHistory}>
         <Switch>
           {/*<Route exact path={'/'}>
@@ -160,7 +174,7 @@ ReactDOM.render(
           </Route>*/}
         </Switch>
       </BrowserRouter>
-      </PersistGate>
+      {/*</PersistGate>*/}
     </Provider>,
     document.querySelector(`#root`)
 );

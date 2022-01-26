@@ -1,6 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block header %}
+<section class="main-container__background main-container__background--inner-pages">
 <section class="main-screen main-screen--short">
 	<div class="main-screen__wrapper">
 	  <div class="page-header">        
@@ -33,9 +34,9 @@
 				<li><a href="#">{{ l10n['top_menu_link-popular'] }}</a></li>   
 			</ul>
 			<ul class="page-header__submenu-list">
-				<li><a href="#">{{ l10n['top_menu_link-about'] }}</a></li>
+				<li><a href="/{{ locale }}/about.html">{{ l10n['top_menu_link-about'] }}</a></li>
 				<li><a href="#">{{ l10n['top_menu_link-statistics'] }}</a></li>
-				<li><a href="#">{{ l10n['top_menu_link-help'] }}</a></li>
+				<li><a href="/{{ locale }}/help.html">{{ l10n['top_menu_link-help'] }}</a></li>
 				<li class="page-header__mobile-menu-only-item">
 					<a href="/ru" class="page-header__locale-switch-link">Рус</a>
 					&nbsp;/
@@ -80,53 +81,73 @@
 							<td>{{ book.authors }}</td>
 						</tr>
 						{% endif %}
+						{% if book.year %}
 						<tr>
 							<td>{{ l10n['year'] }}:</td>
 							<td>{{ book.year }}</td>
 						</tr>
+						{% endif %}
+						{% if book.resource_codes and book.resource_codes != '-'%}
 						<tr>
 							<td>{{ l10n['resource_codes'] }}:</td>
 							<td>{{ book.codes }}</td>
 						</tr>
+						{% endif %}
+						{% if book.resource_pages %}
 						<tr>
 							<td>{{ l10n['resource_pages'] }}:</td>
 							<td>{{ book.pages }}</td>
 						</tr>
+						{% endif %}
+						{% if book.organization %}
 						<tr>
-						<td>{{ l10n['organization'] }}:</td>
-						<td>{{ locale == 'ru' ? book.organization.ru : book.organization.en }}</td>
+							<td>{{ l10n['organization'] }}:</td>
+							<td>{{ locale == 'ru' ? book.organization.ru : book.organization.en }}</td>
 						</tr>
-					<tr>
-						<td>{{ l10n['category'] }}:</td>
-						<td>{{ locale == 'ru' ? book.category.ru : book.category.en }}</td>
-					</tr>
-					<tr>
-						<td>{{ l10n['subject1'] }}:</td>
-						<td>{{ locale == 'ru' ? book.subject1.ru : book.subject1.en }}</td>
-					</tr>
-					{% if book.subject2 %}
+						{% endif %}
+						{% if book.category %}
 						<tr>
-							<td>{{ l10n['subject2'] }}:</td>
-							<td>{{ locale == 'ru' ? book.subject2.ru : book.subject2.en }}</td>
+							<td>{{ l10n['category'] }}:</td>
+							<td>{{ locale == 'ru' ? book.category.ru : book.category.en }}</td>
 						</tr>
-					{% endif %}
-					<tr>
-						<td>{{ l10n['doctype'] }}:</td>
-						<td>{{ locale == 'ru' ? book.doctype.ru : book.doctype.en }}</td>
-					</tr>
-					<tr>
-						<td>{{ l10n['country'] }}:</td>
-						<td>{{ locale == 'ru' ? book.country.ru : book.country.en }}</td>
-					</tr>
-					<tr>
-						<td>{{ l10n['lang'] }}:</td>
-						<td>{{ locale == 'ru' ? book.lang.ru : book.lang.en }}</td>
-					</tr>
-					</tbody>
-					<tr>
-						<td>{{ l10n['type_of_file'] }}:</td>
-						<td><span>PDF, {{ book.file.size // 1024 }} Кб</span></td>
-					</tr>						
+						{% endif %}
+						{% if book.subject1 %}
+						<tr>
+							<td>{{ l10n['subject1'] }}:</td>
+							<td>{{ locale == 'ru' ? book.subject1.ru : book.subject1.en }}</td>
+						</tr>
+						{% endif %}
+						{% if book.subject2 %}
+							<tr>
+								<td>{{ l10n['subject2'] }}:</td>
+								<td>{{ locale == 'ru' ? book.subject2.ru : book.subject2.en }}</td>
+							</tr>
+						{% endif %}
+						{% if book.doctype %}
+						<tr>
+							<td>{{ l10n['doctype'] }}:</td>
+							<td>{{ locale == 'ru' ? book.doctype.ru : book.doctype.en }}</td>
+						</tr>
+						{% endif %}
+						{% if book.country and (book.country.ru or book.country.en) %}
+						<tr>
+							<td>{{ l10n['country'] }}:</td>
+							<td>{{ locale == 'ru' ? book.country.ru : book.country.en }}</td>
+						</tr>
+						{% endif %}
+						{% if book.lang %}
+						<tr>
+							<td>{{ l10n['lang'] }}:</td>
+							<td>{{ locale == 'ru' ? book.lang.ru : book.lang.en }}</td>
+						</tr>
+						{% endif %}
+						{% if book.type_of_file %}
+						<tr>
+							<td>{{ l10n['type_of_file'] }}:</td>
+							<td><span>PDF, {{ book.file.size // 1024 }} Кб</span></td>
+						</tr>
+						{% endif %}
+					</tbody>					
 				</table>
 				<div class="resource__controls">
 					<a class="resource__read-button" href="/{{ locale }}/reader/{{ book.id }}" role="button">{{ l10n['read'] }}</a>
@@ -134,12 +155,16 @@
 					<a class="resource__read-button" href="/files/{{ book.file.id }}" role="button">{{ l10n['download'] }}</a>
 				</div>
 			</section>
-			<section class="resource__annotation">
-				<h2>{{ l10n['annotation'] }}</h2>
-				{{ locale == 'ru' ? book.annotation : book.annotation_en ? book.annotation_en : book.annotation }}
-			</section>
+			{% if book.annotation %}
+				<section class="resource__annotation">
+					<h2>{{ l10n['annotation'] }}</h2>
+					{{ locale == 'ru' ? book.annotation : book.annotation_en }}
+				</section>				
+			{% endif %}
 			</div>
 		</section>	
 	</div>
 </section>
+</section>
+<div id="root"></div>
 {% endblock %}

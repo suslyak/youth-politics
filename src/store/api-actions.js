@@ -30,13 +30,13 @@ export const fetchOrganiztionsList = () => (dispatch, _getState, api) => (
 );
 
 export const fetchSubjectsList = () => (dispatch, _getState, api) => (
-    api.get(`${APIRoute.DICT}?entity=Subject_1`)
+    api.get(`${APIRoute.DICT}?entity=Subject1`)
         .then(({data}) => {
         dispatch(putSubjects(data))})
 );
 
 export const fetchSubSubjectsList = () => (dispatch, _getState, api) => (
-    api.get(`${APIRoute.DICT}?entity=Subject_2`)
+    api.get(`${APIRoute.DICT}?entity=Subject2`)
         .then(({data}) => {
         dispatch(putSubSubjects(data))})
 );

@@ -1,6 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block header %}
+<section class="main-container__background">
 <section class="main-screen main-screen--heigh">
 	<div class="main-screen__wrapper">
 	  <div class="page-header">        
@@ -33,9 +34,9 @@
 				<li><a href="#">{{ l10n['top_menu_link-popular'] }}</a></li>   
 			</ul>
 			<ul class="page-header__submenu-list">
-				<li><a href="#">{{ l10n['top_menu_link-about'] }}</a></li>
+				<li><a href="/{{ locale }}/about.html">{{ l10n['top_menu_link-about'] }}</a></li>
 				<li><a href="#">{{ l10n['top_menu_link-statistics'] }}</a></li>
-				<li><a href="#">{{ l10n['top_menu_link-help'] }}</a></li>
+				<li><a href="/{{ locale }}/help.html">{{ l10n['top_menu_link-help'] }}</a></li>
 				<li class="page-header__mobile-menu-only-item">
 					<a href="/ru" class="page-header__locale-switch-link">Рус</a>
 					&nbsp;/
@@ -91,20 +92,76 @@
 				<ul class="main__fresh-arrivals-list">
 					{% for book in books %}
 						<li class="main__fresh-arrivals-list-item">
-							<a class="main__fresh-arrival-picture" href="/{{ locale }}/resource/{{ book.id }}">
+							<!--<a class="main__fresh-arrival-picture" href="/{{ locale }}/resource/{{ book.id }}">
 								<img src="/thumbs/{{ book.file.thumb }}" width="100" />
-							</a>
+							</a>-->
 							<p>
 							<a href="/{{ locale }}/resource/{{ book.id }}">{{ book.title }}</a>
+							{{ book.year }}{{ locale == 'ru' ? ' г.' : '' }}
+							, 
 							{{ book.pages }} {{ l10n['pages'] }} 
 							<br>
-							{{ book.year }} {{ locale == 'ru' ? 'г.' : '' }}
+							
 							</p>
 						</li>
 					{% endfor %}
 				</ul> 
-			</section>		
+			</section>
+
+			<section class="main__collections">
+				<h2>{{ l10n['colections'] }}</h2>
+				<ul class="main__collections-list">
+				  <li class="main__collections-list-item">
+					<h3>{{ l10n['countries'] }}</h3>
+					<ul>
+						{% for country in countries %}
+							{% if country.name and  country.books_count %}
+								<li>
+									<a href='/{{ locale }}/search?entity=Book&filter=[{"country":{"$in":[{{ country.id }}]}}]'>
+										{{ country.name }} — {{ country.books_count }}
+									</a>
+								</li>
+							{% endif %}
+				  		{% endfor %}
+					</ul>					
+				  </li>
+				  <li class="main__collections-list-item">
+					<h3>{{ l10n['international_organizations'] }}</h3>
+					<ul>
+						{% for organization in organizations %}
+							{% if organization.name and  organization.books_count %}
+							<li>
+								<a href='/{{ locale }}/search?entity=Book&filter=[{"organization":{"$in":[{{ organization.id }}]}}]'>
+								{{ organization.name }} - {{ organization.books_count }}
+								</a>
+							</li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				  </li>
+				</ul> 
+			  </section>
+			  <section class="main__populars">
+				<h2>{{ l10n['popular-books'] }}</h2>
+				<ul class="main__populars-list">
+					{% for book in populars %}
+					<li class="main__populars-list-item">
+						<!--<a class="main__fresh-arrival-picture" href="/{{ locale }}/resource/{{ book.id }}">
+							<img src="/thumbs/{{ book.file.thumb }}" width="100" />
+						</a>-->
+						<p>
+						<a href="/{{ locale }}/resource/{{ book.id }}">{{ book.title }}</a>
+						{{ book.year }}{{ locale == 'ru' ? ' г.' : '' }}
+						,
+						{{ book.pages }} {{ l10n['pages'] }} 						
+						<br>
+						</p>
+					</li>
+				  	{% endfor %}			  
+				</ul> 
+			  </section>
 		</section>
 	</div>
+</section>
 </section>
 {% endblock %}

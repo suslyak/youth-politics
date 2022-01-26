@@ -3,10 +3,10 @@
     min-height: 1240px;
     display: flex;
     flex-direction: column;
-    background: url("/img/main-screen-bg-2@1x.jpg") no-repeat center top/contain transparent;
+    //background: url("/img/main-screen-bg-2@1x.jpg") no-repeat center top/contain transparent;
 
     @include retina {
-      background: url("/img/main-screen-bg-2@2x.jpg") no-repeat center top/contain transparent;
+      //background: url("/img/main-screen-bg-2@2x.jpg") no-repeat center top/contain transparent;
     }
   
     a[href] {
@@ -32,4 +32,24 @@
     &--no-height {
       min-height: auto;
     }
+}
+
+.main-container__background {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: url("/img/main-screen-bg-2@1x.jpg") no-repeat center top/contain transparent;
+
+  @include retina {
+    background: url("/img/main-screen-bg-2@2x.jpg") no-repeat center top/contain transparent;
+  }
+
+  &--inner-pages {
+    background: url("/img/main-screen-bg-small@1x.jpg") no-repeat center top/contain transparent;
+
+    @include retina {
+      background: url("/img/main-screen-bg-small@2x.jpg") no-repeat center top/contain transparent;
+    }
+  }
 }

@@ -204,6 +204,9 @@ export const SEARCH_RESULTS = [
 //https://youthlib.mirea.ru/_search?entity=Book&filter=[{"country":{"$in":[3]}}]
 //https://youthlib.mirea.ru/_search?entity=Book&filter=[{"organization":{"$in":[297]}}]
 //https://youthlib.mirea.ru/_search?entity=Book&filter=[{"doctype":{"$in":[40]}}]
+
+//https://youthlib.mirea.ru/_search?entity=Book&filter=[{"name,title,title_ru,authors,year":{"$match":"СНГ"}}]
+//https://dev.youthlib.mirea.ru/_search?entity=Book&filter={"name,title,title_ru,authors,year":{"$match":"СНГ"}}&limit=10
 export const ApiResponse = [
     [
         {

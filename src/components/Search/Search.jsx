@@ -20,6 +20,11 @@ const Search = () => {
 
   const dispatch = useDispatch();
 
+  const uriSplittebByFilter = decodeURI(location.search.replace('[','')).split('name,title,title_ru,authors,year');
+  const isFromSimpleSearch = uriSplittebByFilter.length > 1;
+  const defaultSearchValue = isFromSimpleSearch ? uriSplittebByFilter[1].split(`"$match":"`)[1].replace('"}}]','') : ``;
+
+  console.log(defaultSearchValue);
   useEffect(() => {
       dispatch(fetchCountriesList());
       dispatch(fetchOrganiztionsList());
@@ -37,7 +42,7 @@ const Search = () => {
 
   return (
     <>
-      <SearchLine advancedSearch={false}/>
+      <SearchLine advancedSearch={false} defaultValue={defaultSearchValue}/>
       <div className="search">
         <Results/>
       </div>

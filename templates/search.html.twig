@@ -1,6 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block header %}
+<section class="main-container__background main-container__background--inner-pages">
 <section class="main-screen main-screen--short">
 	<div class="main-screen__wrapper">
 	  <div class="page-header">        
@@ -33,9 +34,9 @@
 				<li><a href="#">{{ l10n['top_menu_link-popular'] }}</a></li>   
 			</ul>
 			<ul class="page-header__submenu-list">
-				<li><a href="#">{{ l10n['top_menu_link-about'] }}</a></li>
+				<li><a href="/{{ locale }}/about.html">{{ l10n['top_menu_link-about'] }}</a></li>
 				<li><a href="#">{{ l10n['top_menu_link-statistics'] }}</a></li>
-				<li><a href="#">{{ l10n['top_menu_link-help'] }}</a></li>
+				<li><a href="/{{ locale }}/help.html">{{ l10n['top_menu_link-help'] }}</a></li>
 				<li class="page-header__mobile-menu-only-item">
 					<a href="/ru" class="page-header__locale-switch-link">Рус</a>
 					&nbsp;/
@@ -138,6 +139,7 @@
 			</section>
 		</div>
 	</div>
+</section>
 </section>
 <!--
 <h2>{{ l10n['found'] }}: {{ books | length }}</h2>
